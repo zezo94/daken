@@ -1,0 +1,197 @@
+
+/* DAKEN — About Page */
+
+.about-page {
+    color: #2d1c15;
+}
+
+.about-hero {
+    padding: 100px 0;
+    background: linear-gradient(
+        135deg,
+        #2d1c15,
+        #513827
+    );
+    color: #fff;
+    text-align: center;
+}
+
+.about-hero__inner {
+    max-width: 760px;
+}
+
+.about-eyebrow {
+    display: inline-block;
+    color: #b48b61;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+}
+
+.about-hero .about-eyebrow {
+    color: #d6b58e;
+}
+
+.about-hero h1 {
+    margin: 16px 0;
+    font-size: clamp(38px, 6vw, 72px);
+}
+
+.about-hero p {
+    color: #e7d8ca;
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+.about-story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 64px;
+    padding-block: 100px;
+}
+
+.about-story__content h2 {
+    margin: 16px 0 24px;
+    font-size: clamp(28px, 3.5vw, 44px);
+}
+
+.about-story__content p {
+    color: #76685d;
+    line-height: 2;
+    margin-bottom: 18px;
+}
+
+.about-story__visual {
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #efe5da;
+}
+
+.about-story__visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+}
+
+.about-story__visual--empty {
+    background: linear-gradient(
+        135deg,
+        #e9ddd0,
+        #b48b61
+    );
+}
+
+.about-values {
+    padding: 90px 0;
+    background: #fbf8f4;
+}
+
+.about-section-heading {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.about-section-heading h2 {
+    margin-top: 12px;
+    font-size: clamp(28px, 3vw, 42px);
+}
+
+.about-values__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.about-value-card {
+    padding: 36px;
+    border: 1px solid #eee4da;
+    border-radius: 20px;
+    background: #fff;
+}
+
+.about-value-card__number {
+    color: #b48b61;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.about-value-card h3 {
+    margin: 22px 0 12px;
+    font-size: 23px;
+}
+
+.about-value-card p {
+    color: #76685d;
+    line-height: 1.9;
+}
+
+.about-closing {
+    padding-block: 100px;
+    text-align: center;
+}
+
+.about-closing h2 {
+    margin: 16px 0;
+    font-size: clamp(30px, 4vw, 48px);
+}
+
+.about-closing p {
+    color: #76685d;
+    line-height: 1.8;
+}
+
+.about-closing__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 14px 30px;
+    border-radius: 12px;
+    background: #2d1c15;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.about-closing__button:hover {
+    background: #513827;
+}
+
+@media (max-width: 900px) {
+    .about-story {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        padding-block: 70px;
+    }
+
+    .about-values__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-hero {
+        padding: 70px 0;
+    }
+
+    .about-story__visual,
+    .about-story__visual img {
+        min-height: 280px;
+    }
+
+    .about-values {
+        padding: 60px 0;
+    }
+
+    .about-value-card {
+        padding: 26px;
+    }
+
+    .about-closing {
+        padding-block: 70px;
+    }
+}

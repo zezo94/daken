@@ -1,0 +1,200 @@
+
+/* ==========================================
+   DAKEN ADMIN — NAVIGATION SETTINGS
+   LIGHT CREAM THEME
+   ========================================== */
+
+.daken-navigation-admin {
+    max-width: 1100px;
+    margin-inline: auto;
+    color: #21130F;
+}
+
+.daken-navigation-admin__heading {
+    margin-bottom: 28px;
+}
+
+.daken-navigation-admin__heading h1 {
+    margin: 0 0 10px;
+    color: #67411F;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.daken-navigation-admin__heading p {
+    margin: 0;
+    color: #716357;
+    line-height: 1.8;
+}
+
+.daken-navigation-admin__success {
+    margin-bottom: 20px;
+    padding: 15px 18px;
+    border: 1px solid #C9DDBD;
+    border-radius: 10px;
+    background: #F0F8EA;
+    color: #31572C;
+}
+
+.daken-navigation-admin__errors {
+    margin-bottom: 20px;
+    padding: 15px 18px;
+    border: 1px solid #E5B8B8;
+    border-radius: 10px;
+    background: #FFF2F2;
+    color: #8A2929;
+}
+
+.daken-navigation-admin__errors ul {
+    margin: 10px 0 0;
+    padding-inline-start: 22px;
+}
+
+/* Table */
+
+.daken-navigation-admin__table-wrap {
+    overflow-x: auto;
+    border: 1px solid #E3D5C2;
+    border-radius: 14px;
+    background: #FFFDF9;
+    box-shadow: 0 5px 20px rgba(33, 19, 15, .04);
+}
+
+.daken-navigation-admin table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.daken-navigation-admin th,
+.daken-navigation-admin td {
+    padding: 18px;
+    text-align: start;
+    border-bottom: 1px solid #E3D5C2;
+}
+
+.daken-navigation-admin th {
+    background: #F7EBDD;
+    color: #67411F;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.daken-navigation-admin td {
+    background: #FFFDF9;
+    color: #21130F;
+}
+
+.daken-navigation-admin tbody tr:hover td {
+    background: #FFFAF2;
+}
+
+.daken-navigation-admin tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Inputs */
+
+.daken-navigation-admin select,
+.daken-navigation-admin input {
+    width: 100%;
+    max-width: 230px;
+    padding: 12px;
+    border: 1px solid #D6C4AE;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #21130F;
+    font: inherit;
+    font-size: 14px;
+}
+
+.daken-navigation-admin select:focus,
+.daken-navigation-admin input:focus {
+    outline: 2px solid #D6A64D;
+    outline-offset: 2px;
+}
+
+/* Logo settings */
+
+.daken-navigation-admin__logo-settings {
+    margin-top: 28px;
+    padding: 25px;
+    background: #FFFDF9;
+    border: 1px solid #E3D5C2;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(33, 19, 15, .04);
+}
+
+.daken-navigation-admin__logo-settings h2 {
+    margin: 0 0 10px;
+    color: #67411F;
+    font-size: 23px;
+}
+
+.daken-navigation-admin__logo-settings p {
+    color: #716357;
+    line-height: 1.8;
+}
+
+.daken-navigation-admin__logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 22px;
+}
+
+.daken-navigation-admin__logo-grid label {
+    display: block;
+    margin-bottom: 10px;
+    color: #35251C;
+    font-weight: 700;
+}
+
+.daken-navigation-admin__logo-grid small {
+    display: block;
+    margin-top: 8px;
+    color: #716357;
+}
+
+/* Actions */
+
+.daken-navigation-admin__actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 25px;
+}
+
+.daken-navigation-admin__save {
+    padding: 14px 28px;
+    border: 1px solid #D6A64D;
+    border-radius: 9px;
+    background: #D6A64D;
+    color: #21130F;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.daken-navigation-admin__save:hover {
+    background: #F0D18A;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+    .daken-navigation-admin__heading h1 {
+        font-size: 25px;
+    }
+
+    .daken-navigation-admin__logo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .daken-navigation-admin th,
+    .daken-navigation-admin td {
+        padding: 12px;
+    }
+
+    .daken-navigation-admin__logo-settings {
+        padding: 18px;
+    }
+}

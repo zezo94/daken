@@ -1,0 +1,314 @@
+
+/* DAKEN Homepage */
+
+.daken-hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(35, 20, 13, .90),
+            rgba(35, 20, 13, .35)
+        ),
+        var(--hero-image, none),
+        #3b241a;
+    background-size: cover;
+    background-position: center;
+}
+
+.daken-hero__inner {
+    width: 100%;
+}
+
+.daken-hero__content {
+    max-width: 650px;
+    padding-block: 100px;
+}
+
+.daken-eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #b58a58;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.daken-hero h1 {
+    margin: 0 0 22px;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.15;
+}
+
+.daken-hero p {
+    max-width: 520px;
+    margin-bottom: 32px;
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+.daken-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 28px;
+    background: #b58a58;
+    border: 1px solid #b58a58;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background .2s ease;
+}
+
+.daken-button:hover {
+    background: #967044;
+}
+
+.daken-button--outline {
+    background: transparent;
+    color: #42291d;
+}
+
+.daken-button--outline:hover {
+    color: #fff;
+}
+
+.daken-section {
+    padding-block: 85px;
+}
+
+.daken-section--cream {
+    background: #fbf5ee;
+}
+
+.daken-section__heading {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.daken-section__heading h2,
+.daken-about h2 {
+    margin: 0;
+    color: #42291d;
+    font-size: clamp(30px, 4vw, 44px);
+}
+
+.daken-category-grid,
+.daken-product-grid,
+.daken-location-grid {
+    display: grid;
+    gap: 24px;
+}
+
+.daken-category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.daken-product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.daken-location-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.daken-category-card {
+    display: block;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid #e8ddd1;
+    border-radius: 12px;
+    color: #42291d;
+    text-decoration: none;
+    text-align: center;
+}
+
+.daken-category-card img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.daken-category-card h3 {
+    margin: 18px 0 4px;
+}
+
+.daken-section__action {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.daken-about__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.daken-about__text {
+    margin-block: 24px 30px;
+    color: #68554a;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.daken-about__visual {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #42291d;
+    color: #e7c398;
+}
+
+.daken-about__visual span {
+    font-size: clamp(50px, 7vw, 100px);
+    font-weight: 800;
+    letter-spacing: 8px;
+}
+
+.daken-about__visual small {
+    letter-spacing: 6px;
+}
+
+.daken-location-card {
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #e8ddd1;
+    border-radius: 12px;
+}
+
+.daken-location-card h3 {
+    color: #42291d;
+}
+
+.daken-location-card p {
+    color: #68554a;
+}
+
+.daken-location-card a {
+    color: #967044;
+    font-weight: 700;
+}
+
+.daken-contact-cta {
+    padding-block: 80px;
+    background: #42291d;
+    color: #fff;
+    text-align: center;
+}
+
+.daken-contact-cta h2 {
+    font-size: 36px;
+}
+
+.daken-contact-cta p {
+    margin-bottom: 28px;
+    color: #e7d7c9;
+}
+
+.homepage-admin {
+    max-width: 850px;
+    padding-block: 60px;
+}
+
+.homepage-form {
+    display: grid;
+    gap: 24px;
+}
+
+.homepage-form fieldset {
+    display: grid;
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid #e8ddd1;
+    border-radius: 12px;
+}
+
+.homepage-form .form-group {
+    display: grid;
+    gap: 8px;
+}
+
+.homepage-form input,
+.homepage-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d9c9b9;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.homepage-admin-preview {
+    display: block;
+    max-width: 100%;
+    max-height: 260px;
+    margin-top: 16px;
+    border-radius: 8px;
+}
+
+.homepage-save {
+    padding: 14px 24px;
+    border: 0;
+    border-radius: 8px;
+    background: #42291d;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.homepage-notice {
+    color: #246b36;
+}
+
+.homepage-errors {
+    color: #a32929;
+}
+
+@media (max-width: 992px) {
+    .daken-product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .daken-category-grid,
+    .daken-location-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .daken-about__inner {
+        gap: 35px;
+    }
+}
+
+@media (max-width: 640px) {
+    .daken-hero {
+        min-height: 500px;
+    }
+
+    .daken-hero__content {
+        padding-block: 75px;
+    }
+
+    .daken-section {
+        padding-block: 55px;
+    }
+
+    .daken-category-grid,
+    .daken-product-grid,
+    .daken-location-grid,
+    .daken-about__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .daken-about__visual {
+        min-height: 260px;
+    }
+}

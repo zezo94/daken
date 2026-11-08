@@ -1,0 +1,322 @@
+/* ============================================================
+   DAKEN Chocolate — Locations / Store Finder
+   Brand: midnight black, cocoa brown, warm gold
+   Scoped to the visitor locations page; admin remains untouched.
+   ============================================================ */
+
+.locations-page {
+    --loc-bg: #0b0909;
+    --loc-surface: #191310;
+    --loc-surface-raised: #241a15;
+    --loc-gold: #d6a64d;
+    --loc-gold-light: #f0d18a;
+    --loc-ivory: #f7ebdd;
+    --loc-muted: #c3b2a0;
+    --loc-line: rgba(214, 166, 77, .24);
+    --loc-radius: 18px;
+    position: relative;
+    isolation: isolate;
+    min-height: 75vh;
+    padding-block: clamp(36px, 5vw, 76px) clamp(64px, 8vw, 110px);
+    color: var(--loc-ivory);
+    background: radial-gradient(ellipse 75% 35% at 50% 0%, rgba(123, 77, 33, .16), transparent 80%), var(--loc-bg);
+}
+
+.locations-page *,
+.locations-page *::before,
+.locations-page *::after { box-sizing: border-box; }
+
+.locations-page__header {
+    max-width: 800px;
+    margin-bottom: clamp(26px, 4vw, 42px);
+}
+
+.locations-page__eyebrow {
+    display: inline-block;
+    color: var(--loc-gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.locations-page__header h1 {
+    margin: 12px 0 14px;
+    color: var(--loc-gold-light);
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.locations-page__header p {
+    max-width: 660px;
+    margin: 0;
+    color: var(--loc-muted);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.9;
+}
+
+/* Search and city filters */
+.locations-page .locations-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding: clamp(18px, 2.5vw, 28px);
+    border: 1px solid var(--loc-line);
+    border-radius: var(--loc-radius);
+    background: linear-gradient(135deg, #211813, #15100e);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, .18);
+}
+
+.locations-filters__field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+
+.locations-page .locations-filters__field label {
+    color: var(--loc-gold-light);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.locations-page .locations-filters__field input,
+.locations-page .locations-filters__field select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 11px 14px;
+    border: 1px solid rgba(240, 209, 138, .24);
+    border-radius: 10px;
+    background: #100d0b;
+    color: var(--loc-ivory);
+    font: inherit;
+    color-scheme: dark;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.locations-page .locations-filters__field input::placeholder { color: #a99581; opacity: 1; }
+.locations-page .locations-filters__field select option { background: #17110e; color: #f7ebdd; }
+.locations-page .locations-filters__field input:focus-visible,
+.locations-page .locations-filters__field select:focus-visible {
+    outline: none;
+    border-color: var(--loc-gold);
+    box-shadow: 0 0 0 3px rgba(214, 166, 77, .18);
+}
+
+.locations-filters__actions {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.locations-page .locations-filters__actions button,
+.locations-page .locations-filters__actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 11px 19px;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.locations-page .locations-filters__actions button {
+    border: 1px solid var(--loc-gold);
+    background: var(--loc-gold);
+    color: #17100b;
+    cursor: pointer;
+}
+.locations-page .locations-filters__actions button:hover { background: var(--loc-gold-light); border-color: var(--loc-gold-light); }
+.locations-page .locations-filters__actions a {
+    border: 1px solid rgba(214, 166, 77, .48);
+    background: transparent;
+    color: var(--loc-gold-light);
+}
+.locations-page .locations-filters__actions a:hover { background: rgba(214, 166, 77, .10); }
+
+.locations-page__results {
+    margin-bottom: 20px;
+    color: var(--loc-muted);
+    font-size: 14px;
+}
+
+/* Location cards */
+.locations-page .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: clamp(16px, 2vw, 26px);
+}
+
+.locations-page .location-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--loc-line);
+    border-radius: var(--loc-radius);
+    background: linear-gradient(180deg, #231913, #15100e);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, .24);
+    transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.locations-page .location-card:hover {
+    border-color: rgba(214, 166, 77, .55);
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, .34);
+}
+
+.locations-page .location-card__image {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: clamp(170px, 17vw, 215px);
+    aspect-ratio: auto;
+    overflow: hidden;
+    background: #211a15;
+}
+
+.locations-page .location-card__image::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 40%;
+    background: linear-gradient(transparent, rgba(12, 9, 8, .30));
+    pointer-events: none;
+}
+
+.locations-page .location-card__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+}
+.locations-page .location-card:hover .location-card__image img { transform: scale(1.035); }
+
+.locations-page .location-card__content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    padding: 23px 23px 15px;
+}
+
+.locations-page .location-card__city {
+    color: var(--loc-gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .03em;
+}
+
+.locations-page .location-card h2 {
+    margin: 9px 0 12px;
+    color: var(--loc-ivory);
+    font-size: clamp(19px, 1.8vw, 23px);
+    font-weight: 750;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.locations-page .location-card p {
+    margin: 0 0 11px;
+    color: var(--loc-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.locations-page .location-card__phone a {
+    color: var(--loc-gold-light);
+    text-decoration: none;
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+.locations-page .location-card__phone a:hover { text-decoration: underline; }
+
+.locations-page .location-card__map-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 47px;
+    margin: auto 23px 23px;
+    padding: 11px 16px;
+    border: 1px solid var(--loc-gold);
+    border-radius: 10px;
+    background: rgba(214, 166, 77, .06);
+    color: var(--loc-gold-light);
+    font-weight: 750;
+    text-decoration: none;
+    text-align: center;
+    transition: color .2s ease, background .2s ease;
+}
+.locations-page .location-card__map-link:hover {
+    background: var(--loc-gold);
+    color: #17100b;
+}
+
+/* Pagination and empty results */
+.locations-page .locations-pagination { margin-top: 42px; color: var(--loc-ivory); }
+.locations-page .locations-pagination a { color: var(--loc-gold-light); }
+
+.locations-page .locations-empty {
+    padding: clamp(36px, 5vw, 64px) 24px;
+    border: 1px dashed rgba(214, 166, 77, .40);
+    border-radius: var(--loc-radius);
+    background: var(--loc-surface);
+    text-align: center;
+}
+.locations-page .locations-empty h2 { color: var(--loc-gold-light); }
+.locations-page .locations-empty p { color: var(--loc-muted); }
+.locations-page .locations-empty a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 45px;
+    margin-top: 12px;
+    padding: 11px 22px;
+    border: 1px solid var(--loc-gold);
+    border-radius: 10px;
+    background: var(--loc-gold);
+    color: #17100b;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .locations-page .locations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .locations-page .locations-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .locations-page .locations-filters__actions { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+    .locations-page { padding-block: 30px 65px; }
+    .locations-page .locations-grid,
+    .locations-page .locations-filters { grid-template-columns: minmax(0, 1fr); }
+    .locations-page .locations-filters { gap: 14px; padding: 18px; }
+    .locations-page .locations-filters__actions { grid-column: auto; flex-wrap: wrap; }
+    .locations-page .locations-filters__actions button,
+    .locations-page .locations-filters__actions a { flex: 1 1 120px; }
+    .locations-page .location-card__image { height: 195px; }
+    .locations-page .location-card__content { padding: 19px 19px 12px; }
+    .locations-page .location-card__map-link { margin: auto 19px 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .locations-page .location-card,
+    .locations-page .location-card__image img,
+    .locations-page .locations-filters__actions button,
+    .locations-page .locations-filters__actions a { transition: none; }
+    .locations-page .location-card:hover,
+    .locations-page .location-card:hover .location-card__image img { transform: none; }
+}

@@ -1,0 +1,263 @@
+:root {
+    --color-primary: #000000;
+    --color-secondary: #25190f;
+    --color-background: #FFF9F2;
+    --color-surface: #FFFFFF;
+    --color-text: #180d0a;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    --container-width: 1200px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.container {
+    width: min(90%, var(--container-width));
+    margin-inline: auto;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: var(--radius-md);
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+}
+
+
+
+.site-header {
+    background: var(--color-surface);
+    border-bottom: 1px solid #e9dfd6;
+}
+
+.header-inner,
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 24px;
+}
+
+.brand {
+    color: var(--color-primary);
+    font-size: 28px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.site-header nav,
+.site-footer nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.site-header nav a,
+.site-footer nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-header nav a:hover {
+    color: var(--color-secondary);
+}
+
+.site-footer {
+    background: var(--color-primary);
+    color: white;
+    margin-top: 64px;
+}
+
+@media (max-width: 768px) {
+    .header-inner,
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .site-header nav,
+    .site-footer nav {
+        justify-content: center;
+    }
+}
+
+
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d8ccc2;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.form-group input:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+}
+
+
+
+
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+    );
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.admin-card {
+    background: var(--color-surface);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    border: 1px solid #e9dfd6;
+}
+
+.admin-card h2 {
+    margin-top: 0;
+    color: var(--color-primary);
+}
+
+
+
+
+
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 24px;
+    background: var(--color-surface);
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e9dfd6;
+    text-align: start;
+}
+
+.admin-table th {
+    background: #f3e8dc;
+    color: var(--color-primary);
+}
+
+.admin-table a {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.admin-table button {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d8ccc2;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.admin-table img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-primary);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.site-logo img {
+    display: block;
+    width: auto;
+    max-width: 380px;
+    max-height: 170px;
+    object-fit: contain;
+}

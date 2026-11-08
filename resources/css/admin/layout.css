@@ -1,0 +1,354 @@
+
+/* =========================================
+   DAKEN ADMIN DESIGN SYSTEM
+========================================= */
+
+.daken-admin-body {
+    margin: 0;
+    background: #f7f5f1;
+    color: #35271f;
+    font-family: inherit;
+}
+
+.daken-admin-body *,
+.daken-admin-body *::before,
+.daken-admin-body *::after {
+    box-sizing: border-box;
+}
+
+.daken-admin-shell {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.daken-admin-sidebar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100vh;
+    flex-shrink: 0;
+    padding: 28px 16px;
+    background: #2d1c15;
+    color: #f8eee4;
+    overflow-y: auto;
+}
+
+.daken-admin-sidebar__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px 30px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.daken-admin-sidebar__logo {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: #b58a58;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.daken-admin-sidebar__brand strong {
+    display: block;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+.daken-admin-sidebar__brand small {
+    display: block;
+    margin-top: 4px;
+    color: #c7b09b;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.daken-admin-sidebar__label {
+    padding: 12px;
+    margin-bottom: 8px;
+    color: #ae9380;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.daken-admin-sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.daken-admin-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 15px;
+    border-radius: 9px;
+    color: #dfd0c3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background .2s, color .2s;
+}
+
+.daken-admin-sidebar__link:hover {
+    background: #432c21;
+    color: #fff;
+}
+
+.daken-admin-sidebar__link.is-active {
+    background: #b58a58;
+    color: #fff;
+}
+
+.daken-admin-sidebar__icon {
+    width: 22px;
+    text-align: center;
+    font-size: 19px;
+}
+
+.daken-admin-sidebar__bottom {
+    margin-top: auto;
+    padding: 25px 12px 0;
+}
+
+.daken-admin-sidebar__bottom a {
+    color: #e7c398;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.daken-admin-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.daken-admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    min-height: 84px;
+    padding: 18px 35px;
+    border-bottom: 1px solid #eae3dc;
+    background: #fff;
+}
+
+.daken-admin-topbar__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.daken-admin-topbar__eyebrow {
+    color: #b58a58;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.daken-admin-topbar__intro strong {
+    font-size: 17px;
+}
+
+.daken-admin-topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.daken-admin-topbar select {
+    padding: 9px 12px;
+    border: 1px solid #e1d6ca;
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+}
+
+.daken-admin-topbar__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.daken-admin-topbar__avatar {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f0e3d4;
+    color: #42291d;
+    font-weight: 800;
+}
+
+.daken-admin-topbar__username {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.daken-admin-content {
+    flex: 1;
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    padding: 35px;
+}
+
+.daken-admin-footer {
+    padding: 20px 35px;
+    color: #99877a;
+    font-size: 12px;
+    text-align: center;
+}
+
+.daken-admin-alert {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 9px;
+}
+
+.daken-admin-alert--success {
+    background: #e8f5e9;
+    color: #256d35;
+}
+
+.daken-admin-alert--error {
+    background: #fff0ed;
+    color: #a03225;
+}
+
+/* Shared admin forms */
+
+.daken-admin-body .form-group {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.daken-admin-body input:not([type="checkbox"]):not([type="radio"]),
+.daken-admin-body textarea,
+.daken-admin-body select {
+    max-width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #ded2c6;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.daken-admin-body textarea {
+    min-height: 120px;
+}
+
+.daken-admin-body input:focus-visible,
+.daken-admin-body textarea:focus-visible,
+.daken-admin-body select:focus-visible,
+.daken-admin-body a:focus-visible,
+.daken-admin-body button:focus-visible {
+    outline: 2px solid #b58a58;
+    outline-offset: 2px;
+}
+
+/* Shared tables */
+
+.daken-admin-body .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+.daken-admin-body .admin-table th,
+.daken-admin-body .admin-table td {
+    padding: 14px;
+    border-bottom: 1px solid #eee6dd;
+    text-align: start;
+}
+
+.daken-admin-body .admin-table th {
+    background: #f8f3ed;
+    color: #68574b;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+    .daken-admin-sidebar {
+        width: 220px;
+    }
+
+    .daken-admin-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 760px) {
+    .daken-admin-shell {
+        flex-direction: column;
+    }
+
+    .daken-admin-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 18px;
+        overflow: visible;
+    }
+
+    .daken-admin-sidebar__brand {
+        padding-bottom: 15px;
+    }
+
+    .daken-admin-sidebar__label {
+        display: none;
+    }
+
+    .daken-admin-sidebar__nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+
+    .daken-admin-sidebar__link {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .daken-admin-sidebar__bottom {
+        padding-top: 12px;
+    }
+
+    .daken-admin-topbar {
+        padding: 16px 20px;
+    }
+
+    .daken-admin-content {
+        padding: 20px 15px;
+    }
+
+    .daken-admin-topbar__username {
+        display: none;
+    }
+}
+
+
+.daken-admin-body .admin-dashboard {
+    min-height: auto;
+    padding: 0;
+    background: transparent;
+}
+
+.daken-admin-body .admin-dashboard > .container {
+    max-width: none;
+    width: 100%;
+    padding: 0;
+}

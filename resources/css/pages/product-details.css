@@ -1,0 +1,126 @@
+
+/* DAKEN — Product Details */
+
+.product-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+    gap: clamp(28px, 5vw, 80px);
+    padding-block: clamp(36px, 6vw, 90px);
+}
+
+.product-details__image,
+.product-details__info {
+    min-width: 0;
+}
+
+.product-details__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.product-details__info .eyebrow {
+    color: #9b7049;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.product-details__info h1 {
+    margin: 0;
+    color: #2d1c15;
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.product-details__description {
+    max-width: 600px;
+    color: #665a51;
+    font-size: 16px;
+    line-height: 2;
+    white-space: pre-line;
+}
+
+.product-details__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.product-details__meta-item {
+    padding: 10px 16px;
+    border: 1px solid #e8dfd6;
+    border-radius: 12px;
+    background: #fbf8f4;
+    color: #46362b;
+    font-size: 14px;
+}
+
+.product-details__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.product-details__breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding-top: 24px;
+    color: #82766d;
+    font-size: 13px;
+}
+
+.product-details__breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-details__breadcrumb a:hover {
+    color: #9b7049;
+}
+
+.related-products {
+    padding-block: 40px 90px;
+}
+
+.related-products h2 {
+    margin-bottom: 28px;
+    color: #2d1c15;
+    font-size: clamp(24px, 3vw, 36px);
+}
+
+@media (max-width: 900px) {
+    .product-details {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 640px) {
+    .product-details {
+        padding-block: 28px 50px;
+    }
+
+    .product-details__info {
+        gap: 14px;
+    }
+
+    .product-details__description {
+        font-size: 15px;
+        line-height: 1.85;
+    }
+
+    .product-details__actions {
+        width: 100%;
+    }
+
+    .related-products {
+        padding-block: 28px 60px;
+    }
+}

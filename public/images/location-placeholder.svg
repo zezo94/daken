@@ -1,0 +1,46 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 800 500"
+     role="img"
+     aria-label="DAKEN Location">
+
+    <rect width="800" height="500" fill="#F6F0E9"/>
+
+    <circle cx="400" cy="210" r="115" fill="#E9DDD0"/>
+
+    <g fill="none" stroke="#9B7049"
+       stroke-width="15"
+       stroke-linecap="round"
+       stroke-linejoin="round">
+
+        <path d="M325 190h150v125H325z"/>
+
+        <path d="M310 190l25-65h130l25 65z"/>
+
+        <path d="M360 315v-80h80v80"/>
+
+        <path d="M335 125v65h130v-65"/>
+
+    </g>
+
+    <text x="400"
+          y="400"
+          font-family="Arial, sans-serif"
+          font-size="42"
+          font-weight="bold"
+          text-anchor="middle"
+          fill="#2D1C15">
+        DAKEN
+    </text>
+
+    <text x="400"
+          y="438"
+          font-family="Arial, sans-serif"
+          font-size="18"
+          letter-spacing="5"
+          text-anchor="middle"
+          fill="#9B7049">
+        CHOCOLATE
+    </text>
+
+</svg>

@@ -1,0 +1,293 @@
+
+/* ==================================================
+   DAKEN NAVIGATION
+   ================================================== */
+
+.daken-nav53 {
+    position: relative;
+    z-index: 100;
+    background: #0B0909;
+    border-bottom: 1px solid rgba(214, 166, 77, .25);
+}
+
+.daken-nav53,
+.daken-nav53 * {
+    box-sizing: border-box;
+}
+
+.daken-nav53__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 90px;
+}
+
+/* Logo */
+
+.daken-nav53__logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    width: var(--daken-logo-desktop, 125px);
+    text-decoration: none;
+}
+
+.daken-nav53__logo .site-logo__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.daken-nav53__logo .site-logo__text {
+    font-size: 28px;
+    font-weight: 800;
+    color: #D6A64D;
+    letter-spacing: 3px;
+}
+
+/* Desktop links */
+
+.daken-nav53__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    gap: 22px;
+    min-width: 0;
+}
+
+.daken-nav53__links > a {
+    color: #F7EBDD;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color .2s ease;
+}
+
+.daken-nav53__links > a:hover,
+.daken-nav53__links > a[aria-current="page"] {
+    color: #D6A64D;
+}
+
+/* More dropdown */
+
+.daken-nav53__dropdown {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.daken-nav53__dropdown > summary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    color: #F7EBDD;
+    font-size: 14px;
+    font-weight: 600;
+    list-style: none;
+    user-select: none;
+}
+
+.daken-nav53__dropdown > summary::-webkit-details-marker {
+    display: none;
+}
+
+.daken-nav53__dropdown > summary:hover {
+    color: #D6A64D;
+}
+
+.daken-nav53__dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    inset-inline-end: 0;
+    z-index: 120;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 210px;
+    padding: 10px;
+    border: 1px solid #654829;
+    border-radius: 12px;
+    background: #21130F;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .35);
+}
+
+.daken-nav53__dropdown-menu a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 7px;
+    color: #F7EBDD;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.daken-nav53__dropdown-menu a:hover,
+.daken-nav53__dropdown-menu a[aria-current="page"] {
+    background: rgba(214, 166, 77, .12);
+    color: #D6A64D;
+}
+
+/* Language and controls */
+
+.daken-nav53__controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 0 0 auto;
+}
+
+.daken-nav53__controls .language-switcher {
+    margin: 0;
+}
+
+.daken-nav53__controls select {
+    padding: 9px 12px;
+    border: 1px solid #6A4C2D;
+    border-radius: 8px;
+    background: #21130F;
+    color: #F7EBDD;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.daken-nav53__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* Mobile navigation */
+
+.daken-nav53__mobile {
+    display: none;
+    position: relative;
+}
+
+.daken-nav53__mobile > summary {
+    cursor: pointer;
+    list-style: none;
+    color: #D6A64D;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.daken-nav53__mobile > summary::-webkit-details-marker {
+    display: none;
+}
+
+.daken-nav53__mobile nav {
+    position: absolute;
+    top: calc(100% + 18px);
+    inset-inline-end: 0;
+    z-index: 150;
+    width: min(280px, 85vw);
+    max-height: 70vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border: 1px solid #654829;
+    border-radius: 12px;
+    background: #21130F;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .4);
+}
+
+.daken-nav53__mobile nav a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 7px;
+    color: #F7EBDD;
+    text-decoration: none;
+}
+
+.daken-nav53__mobile nav a:hover,
+.daken-nav53__mobile nav a[aria-current="page"] {
+    background: rgba(214, 166, 77, .12);
+    color: #D6A64D;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+    .daken-nav53__links {
+        gap: 12px;
+    }
+
+    .daken-nav53__links > a {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 900px) {
+    .daken-nav53__inner {
+        min-height: 75px;
+        gap: 12px;
+    }
+
+    .daken-nav53__logo {
+        width: var(--daken-logo-mobile, 105px);
+    }
+
+    .daken-nav53__logo .site-logo__image {
+        max-height: 70px;
+    }
+
+    .daken-nav53__links {
+        display: none;
+    }
+
+    .daken-nav53__mobile {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .daken-nav53__controls {
+        gap: 9px;
+    }
+
+    .daken-nav53__controls select {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .daken-nav53__links > a {
+        transition: none;
+    }
+}
+
+/* DAKEN — Logo size override */
+
+.daken-nav53 .daken-nav53__logo {
+    width: var(--daken-logo-desktop, 125px) !important;
+    min-width: var(--daken-logo-desktop, 125px) !important;
+    max-width: none !important;
+    flex: 0 0 var(--daken-logo-desktop, 125px) !important;
+}
+
+.daken-nav53 .daken-nav53__logo .daken-logo-controlled {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain;
+}
+
+@media (max-width: 900px) {
+    .daken-nav53 .daken-nav53__logo {
+        width: var(--daken-logo-mobile, 105px) !important;
+        min-width: var(--daken-logo-mobile, 105px) !important;
+        flex-basis: var(--daken-logo-mobile, 105px) !important;
+    }
+}

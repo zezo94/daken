@@ -1,0 +1,118 @@
+
+.daken-email-settings {
+    max-width: 1000px;
+    margin-inline: auto;
+    color: #21130F;
+}
+
+.daken-email-settings__heading {
+    margin-bottom: 28px;
+}
+
+.daken-email-settings__heading h1 {
+    margin: 0 0 10px;
+    color: #67411F;
+    font-size: 30px;
+}
+
+.daken-email-settings__heading p {
+    color: #716357;
+    line-height: 1.8;
+}
+
+.daken-email-settings__card {
+    padding: 30px;
+    background: #FFFDF9;
+    border: 1px solid #E3D5C2;
+    border-radius: 14px;
+}
+
+.daken-email-settings__card h2 {
+    margin: 0 0 26px;
+    color: #67411F;
+}
+
+.daken-email-settings__field {
+    margin-bottom: 26px;
+}
+
+.daken-email-settings__field > label {
+    display: block;
+    margin-bottom: 10px;
+    color: #35251C;
+    font-weight: 700;
+}
+
+.daken-email-settings__field small {
+    display: block;
+    margin-top: 9px;
+    color: #716357;
+    line-height: 1.7;
+}
+
+.daken-email-settings__field textarea {
+    width: 100%;
+    min-height: 170px;
+    padding: 15px;
+    background: #FFFFFF;
+    color: #21130F;
+    border: 1px solid #D6C4AE;
+    border-radius: 10px;
+    font: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.daken-email-settings__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    color: #35251C;
+    font-weight: 700;
+}
+
+.daken-email-settings__toggle input {
+    width: 20px;
+    height: 20px;
+    accent-color: #B78935;
+}
+
+.daken-email-settings__save {
+    padding: 14px 26px;
+    background: #D6A64D;
+    color: #21130F;
+    border: none;
+    border-radius: 9px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.daken-email-settings__save:hover {
+    background: #F0D18A;
+}
+
+.daken-email-settings__success,
+.daken-email-settings__errors {
+    padding: 15px 18px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.daken-email-settings__success {
+    background: #F0F8EA;
+    border: 1px solid #C9DDBD;
+    color: #31572C;
+}
+
+.daken-email-settings__errors {
+    background: #FFF2F2;
+    border: 1px solid #E5B8B8;
+    color: #8A2929;
+}
+
+@media (max-width: 650px) {
+    .daken-email-settings__card {
+        padding: 18px;
+    }
+}

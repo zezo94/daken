@@ -1,0 +1,395 @@
+@import 'tailwindcss';
+@import "./theme.css";
+@import "./pages/products.css";
+@import "./pages/locations.css";
+@import "./pages/contact.css";
+@import "./pages/content.css";
+@import "./components/site-layout.css";
+@import "./pages/home.css";
+/* DAKEN dark & gold homepage (scoped to .daken-home) */
+@import "./pages/admin-dashboard.css";
+@import "./admin/layout.css";
+@import "./admin/components.css";
+@import './pages/product-gallery.css';
+@import './pages/product-details.css';
+@import './pages/about.css';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@import "./admin/enhancements.css";
+/* Public-only dark and gold brand overrides */
+@import "./frontend/brand-system.css";
+@import "./pages/site-pages-cms.css";
+@import "./pages/site-pages-layout-fix.css";
+@import "./pages/page-editor.css";
+@import "./pages/daken-gallery.css";
+@import "./pages/daken-navigation52.css";
+@import "./pages/daken-nav53.css";
+@import "./admin/navigation-settings.css";
+
+@import "./admin/daken-admin-light.css";
+@import "./admin/system-health.css";
+@import "./admin/email-notifications.css";
+@import "./admin/users.css";
+
+
+
+
+@theme {
+    --font-sans: Arial, Tahoma, ui-sans-serif, system-ui, sans-serif;
+}
+
+
+
+/* DAKEN HEADER LOGO */
+:root {
+    --daken-logo-width: 125px;
+    --daken-logo-height: 68px;
+}
+
+.site-header .site-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: var(--daken-logo-width);
+}
+
+.site-header .site-logo__image {
+    display: block;
+    width: var(--daken-logo-width);
+    height: var(--daken-logo-height);
+    max-width: none;
+    object-fit: contain;
+}
+
+.site-header .site-logo__text {
+    font-size: 28px;
+    font-weight: 800;
+    color: #D6A64D;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --daken-logo-width: 100px;
+        --daken-logo-height: 54px;
+    }
+}
+
+/* ==================================================
+   DAKEN HOMEPAGE BUILDER — STAGE 56
+   ================================================== */
+
+/* ==================================================
+   DAKEN HOMEPAGE BUILDER — LIGHT ADMIN THEME
+   ================================================== */
+
+.homepage-admin {
+    color: #21130F;
+}
+
+.homepage-admin > h1 {
+    color: #21130F;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.homepage-admin > p {
+    color: #66574B;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Main sections */
+
+.homepage-admin .homepage-admin-section {
+    margin-block: 28px;
+    padding: 26px;
+    border: 1px solid #E2D3BD;
+    border-radius: 14px;
+    background: #FFFDF9;
+    color: #21130F;
+    box-shadow: 0 4px 18px rgba(33, 19, 15, 0.04);
+}
+
+.homepage-admin .homepage-admin-section h2 {
+    margin: 0 0 18px;
+    color: #67411F;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.homepage-admin .homepage-admin-section p {
+    color: #66574B;
+    line-height: 1.8;
+}
+
+/* Arabic and English fields */
+
+.homepage-admin fieldset {
+    min-width: 0;
+    margin: 20px 0;
+    padding: 24px;
+    border: 1px solid #E0CBAA;
+    border-radius: 12px;
+    background: #FFFCF7;
+}
+
+.homepage-admin legend {
+    padding-inline: 10px;
+    color: #67411F;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+.homepage-admin .form-group {
+    margin-bottom: 20px;
+}
+
+.homepage-admin .form-group label {
+    display: block;
+    margin-bottom: 9px;
+    color: #35251C;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* Inputs */
+
+.homepage-admin .form-group input:not([type="file"]),
+.homepage-admin .form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #D6C4AE;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #21130F;
+    font-size: 15px;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+.homepage-admin .form-group input:focus,
+.homepage-admin .form-group textarea:focus {
+    outline: none;
+    border-color: #D6A64D;
+    box-shadow: 0 0 0 3px rgba(214, 166, 77, 0.15);
+}
+
+.homepage-admin .form-group textarea {
+    min-height: 115px;
+    resize: vertical;
+}
+
+.homepage-admin input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px dashed #D6C4AE;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #35251C;
+}
+
+/* Hero preview */
+
+.homepage-admin-preview {
+    display: block;
+    max-width: 100%;
+    width: 420px;
+    height: auto;
+    margin-top: 18px;
+    border: 1px solid #E2D3BD;
+    border-radius: 12px;
+}
+
+/* Sections table */
+
+.homepage-admin .homepage-sections-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #E2D3BD;
+    border-radius: 12px;
+    background: #FFFFFF;
+}
+
+.homepage-admin .homepage-sections-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.homepage-admin .homepage-sections-table th,
+.homepage-admin .homepage-sections-table td {
+    padding: 16px;
+    text-align: start;
+    border-bottom: 1px solid #EEE3D5;
+    color: #35251C;
+}
+
+.homepage-admin .homepage-sections-table th {
+    background: #F7EBDD;
+    color: #67411F;
+    font-weight: 800;
+}
+
+.homepage-admin .homepage-sections-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.homepage-admin .homepage-sections-table tbody tr:hover {
+    background: #FFFAF2;
+}
+
+/* Section visibility */
+
+.homepage-admin .homepage-section-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #35251C;
+    cursor: pointer;
+}
+
+.homepage-admin .homepage-section-toggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: #B78935;
+}
+
+/* Section order */
+
+.homepage-admin .homepage-order-input {
+    width: 90px;
+    padding: 10px;
+    border: 1px solid #D6C4AE;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #21130F;
+    font-size: 14px;
+}
+
+.homepage-admin .homepage-order-input:focus {
+    outline: 2px solid #D6A64D;
+    outline-offset: 2px;
+}
+
+/* Save button */
+
+.homepage-admin .homepage-save {
+    display: inline-block;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 9px;
+    background: #D6A64D;
+    color: #21130F;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.homepage-admin .homepage-save:hover {
+    background: #F0D18A;
+}
+
+/* Notifications */
+
+.homepage-admin .homepage-notice {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #C9DDBD;
+    border-radius: 10px;
+    background: #F0F8EA;
+    color: #31572C;
+}
+
+.homepage-admin .homepage-errors {
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #E5B8B8;
+    border-radius: 10px;
+    background: #FFF2F2;
+    color: #8A2929;
+}
+
+.homepage-admin .homepage-errors ul {
+    margin: 10px 0 0;
+    padding-inline-start: 22px;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+    .homepage-admin > h1 {
+        font-size: 25px;
+    }
+
+    .homepage-admin .homepage-admin-section {
+        padding: 16px;
+    }
+
+    .homepage-admin fieldset {
+        padding: 16px;
+    }
+
+    .homepage-admin .homepage-sections-table th,
+    .homepage-admin .homepage-sections-table td {
+        padding: 11px;
+    }
+}
+
+
+
+/* DAKEN account navigation */
+
+.daken-nav53__account {
+    display: flex;
+    align-items: center;
+}
+
+.daken-account-menu {
+    position: relative;
+}
+
+.daken-account-menu > summary,
+.daken-account-login {
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+}
+
+.daken-account-logout {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+}
+
+.daken-account-logout:hover,
+.daken-account-login:hover {
+    color: #a47749;
+}
+
+.daken-nav53__mobile .daken-account-logout {
+    padding: 12px 0;
+}
+
+.daken-nav53__dropdown-menu form {
+    margin: 0;
+}
+
+
+
+@font-face {
+    font-family: 'DAKEN Arabic';
+    src: url('../../public/fonts/cairo-arabic-200-normal.woff') format('woff');
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+}

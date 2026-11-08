@@ -1,0 +1,21 @@
+/* DAKEN stage 52: scoped public navigation, black/gold */
+.daken-nav52-header{background:#0b0909!important;border-bottom:1px solid rgba(214,166,77,.25);position:relative;z-index:50;color:#f7ebdd}
+.daken-nav52-header__inner{display:flex;align-items:center;gap:clamp(12px,2vw,28px);min-height:78px;flex-wrap:nowrap}
+.daken-nav52-brand{flex:0 0 auto;color:#d6a64d!important;text-decoration:none;font-weight:800;letter-spacing:.08em}
+.daken-nav52-brand .site-logo__image{max-height:56px;width:auto;object-fit:contain}
+.daken-nav52-desktop{display:flex;flex:1 1 auto;align-items:center;justify-content:center;gap:clamp(8px,1.2vw,20px);flex-wrap:wrap;min-width:0}
+.daken-nav52-desktop a,.daken-nav52-mobile__links a{color:#f7ebdd!important;text-decoration:none;font-size:clamp(.78rem,.9vw,.94rem);line-height:1.5;padding:8px 4px;transition:color .15s ease}
+.daken-nav52-desktop a:hover,.daken-nav52-desktop a[aria-current="page"],.daken-nav52-mobile__links a:hover,.daken-nav52-mobile__links a[aria-current="page"]{color:#f0d18a!important}
+.daken-nav52-language{flex:0 0 auto;margin:0}
+.daken-nav52-language select{color:#f0d18a;background:#21130f;border:1px solid #77562b;border-radius:8px;padding:8px 10px;max-width:110px}
+.daken-nav52-mobile{display:none}
+.daken-nav52-footer{background:#0b0909!important;color:#f7ebdd!important;border-top:1px solid rgba(214,166,77,.25)}
+.daken-nav52-footer__inner{display:grid;grid-template-columns:1.25fr 1.1fr 1fr 1fr;gap:clamp(20px,3vw,48px);padding-block:45px}
+.daken-nav52-footer h3{color:#d6a64d!important;margin-bottom:16px}
+.daken-nav52-footer a{color:#f7ebdd!important;text-decoration:none}
+.daken-nav52-footer a:hover{color:#f0d18a!important}
+.daken-nav52-footer .footer-navigation nav,.daken-nav52-footer .footer-contact,.daken-nav52-footer .footer-social__links{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.daken-nav52-footer .footer-description{color:#d8c5ae}
+.daken-nav52-footer .footer-bottom{border-top:1px solid rgba(214,166,77,.18);padding-block:16px;text-align:center;color:#d8c5ae}
+@media(max-width:1100px){.daken-nav52-desktop{display:none}.daken-nav52-header__inner{flex-wrap:wrap}.daken-nav52-brand{margin-inline-end:auto}.daken-nav52-mobile{display:block;position:relative}.daken-nav52-mobile summary{display:flex;align-items:center;gap:7px;cursor:pointer;list-style:none;color:#f0d18a;background:#21130f;border:1px solid #77562b;padding:9px 12px;border-radius:9px}.daken-nav52-mobile summary::-webkit-details-marker{display:none}.daken-nav52-mobile__links{position:absolute;inset-inline-end:0;top:calc(100% + 10px);width:min(320px,calc(100vw - 30px));max-height:70vh;overflow:auto;background:#160f0c;border:1px solid #77562b;border-radius:12px;box-shadow:0 14px 35px #0009;padding:12px;display:flex;flex-direction:column;z-index:100}.daken-nav52-mobile__links a{display:block;padding:10px 12px;border-bottom:1px solid #ffffff13}.daken-nav52-footer__inner{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.daken-nav52-header__inner{min-height:68px;gap:10px}.daken-nav52-brand .site-logo__image{max-height:44px}.daken-nav52-language select{max-width:94px;padding:7px 5px}.daken-nav52-footer__inner{grid-template-columns:1fr;padding-block:30px}.daken-nav52-footer .footer-navigation nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}

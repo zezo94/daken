@@ -1,0 +1,200 @@
+
+.daken-users-page {
+    color: #21130f;
+    padding: 24px;
+}
+
+.daken-users-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.daken-users-heading h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 8px;
+}
+
+.daken-users-heading p {
+    color: #75695c;
+    margin: 0;
+}
+
+.daken-users-card {
+    background: #fffdf8;
+    border: 1px solid #e8dcc9;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 8px 30px rgba(33, 19, 15, .04);
+}
+
+.daken-users-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: #21130f;
+    color: #f0d18a;
+    border: 1px solid #21130f;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.daken-users-btn:hover {
+    background: #0b0909;
+    color: #f0d18a;
+}
+
+.daken-users-table-wrap {
+    overflow-x: auto;
+}
+
+.daken-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.daken-users-table th,
+.daken-users-table td {
+    padding: 15px 12px;
+    text-align: start;
+    border-bottom: 1px solid #eee5d8;
+}
+
+.daken-users-table th {
+    color: #74634e;
+    font-size: 13px;
+}
+
+.daken-users-table td {
+    font-size: 14px;
+}
+
+.daken-users-protected {
+    display: inline-block;
+    background: #f7ebdd;
+    color: #7d5720;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 4px;
+}
+
+.daken-users-action {
+    color: #806023;
+    font-weight: 700;
+    margin-inline-end: 12px;
+}
+
+.daken-users-delete-form {
+    display: inline;
+}
+
+.daken-users-danger {
+    color: #a12727;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.daken-users-pagination {
+    padding-top: 20px;
+}
+
+.daken-users-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.daken-users-fields > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.daken-users-fields label {
+    font-weight: 700;
+}
+
+.daken-users-fields input,
+.daken-users-fields select {
+    width: 100%;
+    padding: 12px 14px;
+    background: #fff;
+    color: #21130f;
+    border: 1px solid #ded1bc;
+    border-radius: 10px;
+}
+
+.daken-users-fields input:focus,
+.daken-users-fields select:focus {
+    outline: 2px solid #d6a64d;
+    outline-offset: 1px;
+}
+
+.daken-users-subtitle {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 30px 0 16px;
+}
+
+.daken-users-permissions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.daken-users-permission {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    background: #f9f3e9;
+    border: 1px solid #e8dcc9;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.daken-users-permission input {
+    accent-color: #a87c2f;
+}
+
+.daken-users-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.daken-users-back {
+    color: #7a674e;
+    text-decoration: none;
+}
+
+.daken-users-error {
+    color: #b42318;
+}
+
+@media (max-width: 800px) {
+    .daken-users-fields,
+    .daken-users-permissions {
+        grid-template-columns: 1fr;
+    }
+
+    .daken-users-page {
+        padding: 12px;
+    }
+
+    .daken-users-card {
+        padding: 16px;
+    }
+}
