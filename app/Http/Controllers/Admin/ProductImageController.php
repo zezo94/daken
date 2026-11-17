@@ -60,6 +60,10 @@ class ProductImageController extends Controller
                         'public'
                     );
 
+                    if ($path === false) {
+                        throw new \RuntimeException('Product image upload failed.');
+                    }
+
                     $uploadedPaths[] = $path;
 
                     $product->images()->create([
@@ -182,8 +186,15 @@ class ProductImageController extends Controller
             }
         });
 
-        Storage::disk('public')->delete($path);
-
+        if (
+            is_string($path)
+            && preg_match(
+                '~\Aproducts/gallery/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $path
+            )
+        ) {
+            Storage::disk('public')->delete($path);
+        }
         return back()->with(
             'success',
             'تم حذف الصورة بنجاح.'

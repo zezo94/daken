@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Http\Request;
@@ -136,11 +135,43 @@ Route::post('/language', function (Request $request) {
 
 /*
 |--------------------------------------------------------------------------
-| User Profile
+| Two-Factor Challenge Cancellation
 |--------------------------------------------------------------------------
+|
+| Cancel only the pending Fortify login challenge.
+|
+| This route does not log out an authenticated staff user.
+| The guest middleware prevents access after authentication.
+|
 */
 
-Route::middleware('auth')->group(function () {
+Route::post('/two-factor-challenge/cancel', function (Request $request) {
+
+    $request->session()->forget([
+        'login.id',
+        'login.remember',
+    ]);
+
+    $request->session()->regenerateToken();
+
+    return redirect()->route('login');
+
+})
+    ->middleware('guest:web')
+    ->name('two-factor.cancel');
+
+/*
+|--------------------------------------------------------------------------
+| User Profile
+|--------------------------------------------------------------------------
+|
+| Only authenticated, active admin staff may access this page.
+|
+*/
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
     Route::view('/my-profile', 'profile.show')
         ->name('profile.show');
+
 });

@@ -60,6 +60,8 @@ class AdminInactiveLoginSecurityTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('admin.dashboard'))
-            ->assertForbidden();
-    }
-}
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
+    }}

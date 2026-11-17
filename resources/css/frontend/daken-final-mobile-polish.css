@@ -1,0 +1,85 @@
+﻿/*
+ * DAKEN — Final Mobile Polish
+ * Stage 63.20.2
+ * Public frontend only.
+ */
+
+/* Product links on narrow two-column grids */
+@media (max-width: 480px) {
+    body.daken-frontend .products-grid .product-card__link,
+    body.daken-frontend .daken-product-grid .product-card__link {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        flex-wrap: wrap;
+        column-gap: 7px;
+        row-gap: 3px;
+        max-width: 100%;
+        min-height: 44px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    body.daken-frontend .product-card__link span[aria-hidden="true"] {
+        display: inline-block;
+        flex-shrink: 0;
+    }
+}
+
+/* Footer layout — phone */
+@media (max-width: 600px) {
+    body.daken-frontend .daken-nav52-footer__inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        padding-block: 30px 34px;
+    }
+
+    body.daken-frontend .daken-nav52-footer h3 {
+        margin-bottom: 10px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-navigation nav {
+        gap: 10px 14px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-contact {
+        gap: 10px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-social__links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 9px 12px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__icon {
+        width: 21px;
+        height: 21px;
+        flex: 0 0 21px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-bottom {
+        padding-block: 16px;
+    }
+}
+
+/* Footer contact links — all screen sizes */
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__contact-link {
+    overflow-wrap: anywhere;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__contact-link .daken-footer-luxury__icon {
+    flex-shrink: 0;
+}

@@ -1,0 +1,82 @@
+/*
+ * DAKEN Typography Refinement
+ * Stage 63.19.4
+ * Frontend only — Arabic / English
+ */
+
+/* Product cards */
+
+body.daken-frontend .product-card__category {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+body.daken-frontend .product-card__body h3 {
+    font-size: clamp(17px, 1.5vw, 20px);
+    font-weight: 700;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+body.daken-frontend .product-card__body p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+body.daken-frontend .product-card__link {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* Footer */
+
+body.daken-frontend .daken-nav52-footer h3 {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-description {
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-navigation nav a {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-label {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body.daken-frontend .product-card__body h3 {
+        font-size: 18px;
+        line-height: 1.55;
+    }
+
+    body.daken-frontend .product-card__body p,
+    body.daken-frontend .product-card__link {
+        font-size: 14px;
+    }
+
+    body.daken-frontend .daken-nav52-footer h3 {
+        font-size: 18px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-navigation nav a {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-description {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+}

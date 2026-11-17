@@ -102,9 +102,11 @@ class AdminActivityViewerTest extends TestCase
 
         $this->actingAs($actor)
             ->get(route('admin.activities.index'))
-            ->assertForbidden();
-    }
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
 
+        $this->assertGuest('web');
+    }
     public function test_authorized_admin_can_export_csv(): void
     {
         $actor = $this->makeAdmin(['activities.view']);

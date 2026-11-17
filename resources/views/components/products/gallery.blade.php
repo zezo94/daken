@@ -50,7 +50,7 @@
                         class="daken-product-gallery__thumb"
                         data-gallery-thumb
                         data-image-url="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($image['path']) }}"
-                        aria-label="عرض الصورة {{ $loop->iteration }}"
+                        aria-label="{{ app()->getLocale() === 'ar' ? 'عرض الصورة' : 'View image' }} {{ $loop->iteration }}"
                         aria-pressed="{{ $loop->first ? 'true' : 'false' }}"
                     >
                         <img

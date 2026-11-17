@@ -10,13 +10,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RejectInactiveAdminTwoFactor
 {
-    public function handle(Request $request, Closure $next): Response
-    {
-        // Protect only Fortify's 2FA completion endpoint.
-        if (! $request->isMethod('POST')
-            || ! $request->is('two-factor-challenge')) {
-            return $next($request);
-        }
+    public function handle(
+        Request $request,
+        Closure $next
+    ): Response {
+        /*
+        |--------------------------------------------------------------------------
+        | Pending Two-Factor Login
+        |--------------------------------------------------------------------------
+        |
+        | Fortify stores the pending user's ID in login.id.
+        | A missing ID means there is no pending challenge to validate.
+        |
+        */
 
         $userId = $request->session()->get('login.id');
 
@@ -24,16 +30,30 @@ class RejectInactiveAdminTwoFactor
             return $next($request);
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Validate Active Admin Account
+        |--------------------------------------------------------------------------
+        */
+
         $user = User::query()->find($userId);
 
         if (
-            $user instanceof User
-            && ! AdminLoginPolicy::allows($user)
+            ! $user instanceof User ||
+            ! AdminLoginPolicy::allows($user)
         ) {
+            /*
+            |--------------------------------------------------------------------------
+            | Cancel Pending Login
+            |--------------------------------------------------------------------------
+            */
+
             $request->session()->forget([
                 'login.id',
                 'login.remember',
             ]);
+
+            $request->session()->regenerateToken();
 
             return redirect()
                 ->route('login')

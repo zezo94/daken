@@ -40,15 +40,58 @@
         </div>
         <div class="footer-contact">
             <h3>{{ $locale === 'ar' ? 'تواصل معنا' : 'Contact Us' }}</h3>
-            @if($contactEmail)<a href="mailto:{{ $contactEmail }}">{{ $contactEmail }}</a>@endif
-            @if($contactPhone)<a href="tel:{{ $contactPhone }}">{{ $contactPhone }}</a>@endif
+            @if($contactEmail)
+                <a class="daken-footer-luxury__contact-link" href="mailto:{{ $contactEmail }}">
+                    <svg class="daken-footer-luxury__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2"/>
+                        <path d="m3 7 9 6 9-6"/>
+                    </svg>
+                    <span>{{ $contactEmail }}</span>
+                </a>
+            @endif
+            @if($contactPhone)
+                <a class="daken-footer-luxury__contact-link" href="tel:{{ $contactPhone }}">
+                    <svg class="daken-footer-luxury__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.7L7.1 10a16 16 0 0 0 6.9 6.9l1.6-1.9a2 2 0 0 1 1.7-.6l3 .5a2 2 0 0 1 1.7 2Z"/>
+                    </svg>
+                    <span dir="ltr">{{ $contactPhone }}</span>
+                </a>
+            @endif
             @if(!$contactEmail && !$contactPhone)<p>{{ $locale === 'ar' ? 'تابعنا عبر حساباتنا الرسمية.' : 'Follow our official social accounts.' }}</p>@endif
         </div>
         <div class="footer-social">
             <h3>{{ $locale === 'ar' ? 'تابعنا' : 'Follow Us' }}</h3>
             <div class="footer-social__links">
                 @foreach($socialLinks as $key => $label)
-                    @if($url = $siteSettings->get($key))<a href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $label }}</a>@endif
+                    @if($url = $siteSettings->get($key))
+                        <a class="daken-footer-luxury__social-link"
+                           href="{{ $url }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="{{ $label }}"
+                           title="{{ $label }}">
+                            @switch($key)
+                                @case('instagram_url')
+                                    <svg class="daken-footer-luxury__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                        <circle cx="12" cy="12" r="4"/>
+                                        <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/>
+                                    </svg>
+                                    @break
+                                @case('facebook_url')
+                                    <svg class="daken-footer-luxury__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.7-1.6 1.6V12h2.8l-.5 2.9h-2.3v7A10 10 0 0 0 22 12Z"/>
+                                    </svg>
+                                    @break
+                                @case('tiktok_url')
+                                    <svg class="daken-footer-luxury__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M16.7 2h-3.1v13.1a3 3 0 1 1-2.6-3v-3.2a6.2 6.2 0 1 0 5.7 6.2V8.4a8 8 0 0 0 4.8 1.5V6.7A4.9 4.9 0 0 1 16.7 2Z"/>
+                                    </svg>
+                                    @break
+                            @endswitch
+                            <span class="daken-footer-luxury__social-label">{{ $label }}</span>
+                        </a>
+                    @endif
                 @endforeach
             </div>
         </div>

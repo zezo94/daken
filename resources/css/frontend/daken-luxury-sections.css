@@ -1,0 +1,559 @@
+/* =========================================================
+   DAKEN DARK LUXURY SECTIONS - STAGE 63.9
+   Frontend only. Independent of section order and visibility.
+   ========================================================= */
+
+/* Section surfaces */
+
+body.daken-frontend .daken-section {
+    padding-block: clamp(64px, 8vw, 112px);
+    background: #0d0a09;
+    color: #f8f2e9;
+}
+
+body.daken-frontend .daken-section--cream {
+    background: #160e0b;
+}
+
+/* Section headings */
+
+body.daken-frontend .daken-section__heading {
+    margin-bottom: clamp(32px, 5vw, 54px);
+    text-align: center;
+}
+
+body.daken-frontend .daken-section__heading h2,
+body.daken-frontend .daken-about h2 {
+    margin: 0;
+    color: #f0dfbf;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.3;
+    text-wrap: balance;
+}
+
+/* Shared homepage buttons */
+
+body.daken-frontend .daken-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 13px 30px;
+    border: 1px solid #c6a15b;
+    border-radius: 4px;
+    background: #c6a15b;
+    color: #160f0b;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    transition:
+        background-color 250ms ease,
+        border-color 250ms ease,
+        color 250ms ease;
+}
+
+body.daken-frontend .daken-button--outline {
+    background: transparent;
+    color: #f0dfbf;
+}
+
+body.daken-frontend .daken-section__action {
+    margin-top: 44px;
+    text-align: center;
+}
+
+/* About section */
+
+body.daken-frontend .daken-about__text {
+    color: #c3b4a7;
+    font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 2;
+}
+
+body.daken-frontend .daken-about__visual {
+    position: relative;
+    overflow: hidden;
+    min-height: 380px;
+    padding: 32px;
+    border: 1px solid rgba(198, 161, 91, .28);
+    border-radius: 12px;
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(198, 161, 91, .18),
+            transparent 48%
+        ),
+        linear-gradient(145deg, #493024, #160f0c);
+    color: #f0dfbf;
+    box-shadow: 0 24px 55px rgba(0, 0, 0, .24);
+}
+
+body.daken-frontend .daken-about__visual span {
+    max-width: 100%;
+    color: #f0dfbf;
+    font-size: clamp(40px, 6vw, 84px);
+    letter-spacing: .06em;
+    overflow-wrap: anywhere;
+}
+
+body.daken-frontend .daken-about__visual small {
+    color: #c6a15b;
+    letter-spacing: .18em;
+}
+
+/* Location cards */
+
+body.daken-frontend .daken-location-card {
+    padding: clamp(24px, 3vw, 36px);
+    border: 1px solid rgba(198, 161, 91, .24);
+    border-radius: 12px;
+    background: linear-gradient(145deg, #291b16, #1b110e);
+    color: #f8f2e9;
+    transition:
+        border-color 250ms ease,
+        box-shadow 250ms ease;
+}
+
+body.daken-frontend .daken-location-card h3 {
+    color: #f0dfbf;
+}
+
+body.daken-frontend .daken-location-card p {
+    color: #c3b4a7;
+    line-height: 1.9;
+}
+
+body.daken-frontend .daken-location-card a {
+    color: #c6a15b;
+    text-underline-offset: 4px;
+}
+
+/* Contact call-to-action */
+
+body.daken-frontend .daken-contact-cta {
+    padding-block: clamp(72px, 9vw, 120px);
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(198, 161, 91, .12),
+            transparent 60%
+        ),
+        #1d110c;
+    color: #f8f2e9;
+    text-align: center;
+}
+
+body.daken-frontend .daken-contact-cta h2 {
+    color: #f0dfbf;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.3;
+}
+
+body.daken-frontend .daken-contact-cta p {
+    color: #d7c6b5;
+    line-height: 1.9;
+}
+
+/* Hover interactions */
+
+@media (hover: hover) and (pointer: fine) {
+    body.daken-frontend .daken-button:hover {
+        background: #e0be7b;
+        border-color: #e0be7b;
+        color: #160f0b;
+    }
+
+    body.daken-frontend .daken-button--outline:hover {
+        background: #c6a15b;
+        color: #160f0b;
+    }
+
+    body.daken-frontend .daken-location-card:hover {
+        border-color: rgba(198, 161, 91, .55);
+        box-shadow: 0 20px 42px rgba(0, 0, 0, .25);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+    body.daken-frontend .daken-section {
+        padding-block: 60px;
+    }
+
+    body.daken-frontend .daken-about__visual {
+        min-height: 280px;
+    }
+
+    body.daken-frontend .daken-section__action {
+        margin-top: 32px;
+    }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend .daken-button,
+    body.daken-frontend .daken-location-card {
+        transition: none;
+    }
+}
+
+
+
+/* =========================================================
+   DAKEN — STAGE 63.22.9.27
+   Soft luxury card surfaces
+   ========================================================= */
+
+body.daken-frontend .daken-location-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(67, 40, 29, 0.24) 0%,
+            rgba(28, 18, 15, 0.12) 100%
+        );
+
+    border: 1px solid rgba(198, 161, 91, 0.14);
+    border-radius: 16px;
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.10);
+}
+
+body.daken-frontend .daken-about__visual {
+    background:
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(198, 161, 91, 0.07),
+            transparent 60%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(55, 34, 25, 0.20),
+            rgba(19, 13, 11, 0.10)
+        );
+
+    border-color: rgba(198, 161, 91, 0.14);
+
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.12);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body.daken-frontend .daken-location-card:hover {
+        border-color: rgba(198, 161, 91, 0.30);
+
+        box-shadow:
+            0 20px 45px rgba(0, 0, 0, 0.16);
+    }
+}
+
+
+
+/* =========================================================
+   DAKEN — STAGE 63.22.9.28
+   Full-bleed collection images + refined location cards
+   ========================================================= */
+
+/* COLLECTIONS — image fills the entire card */
+
+body.daken-frontend
+.daken-collections-carousel .daken-layered-frame > .daken-category-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(198, 161, 91, 0.32);
+    border-radius: 12px;
+    background: #100d0b;
+}
+
+/* Image container occupies the full card */
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card__visual {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    background: #100d0b;
+}
+
+/* Fill image area without distortion */
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card__visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Elegant title overlay at the bottom */
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card h3 {
+    position: absolute;
+    z-index: 3;
+    inset-inline: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 38px 14px 18px;
+    background: linear-gradient(
+        to top,
+        rgba(8, 5, 4, 0.90) 0%,
+        rgba(8, 5, 4, 0.48) 48%,
+        transparent 100%
+    );
+    color: #f0dfbf;
+    font-size: clamp(16px, 1.5vw, 21px);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: center;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+    pointer-events: none;
+}
+
+/* Missing images: maintain the same card proportions */
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card__placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    background:
+        radial-gradient(
+            ellipse at 50% 40%,
+            rgba(198, 161, 91, 0.10),
+            transparent 65%
+        ),
+        #100d0b;
+}
+
+/* LOCATIONS — subtle luxury glass surfaces */
+
+body.daken-frontend .daken-location-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 170px;
+    padding: 30px 22px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        155deg,
+        rgba(198, 161, 91, 0.055),
+        rgba(16, 11, 9, 0.025)
+    );
+
+    border: 1px solid rgba(198, 161, 91, 0.16);
+    border-radius: 14px;
+
+    box-shadow: none;
+    text-align: center;
+
+    transition:
+        border-color 250ms ease,
+        background-color 250ms ease,
+        transform 250ms ease;
+}
+
+/* Subtle gold accent */
+
+body.daken-frontend .daken-location-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    inset-inline: 25%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(198, 161, 91, 0.55),
+        transparent
+    );
+}
+
+/* Location name */
+
+body.daken-frontend .daken-location-card h3 {
+    margin: 0;
+    color: #e8c88c;
+    font-size: clamp(17px, 1.5vw, 21px);
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* City and country */
+
+body.daken-frontend .daken-location-card p {
+    margin: 0;
+    color: #c3b4a7;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Optional Google Maps link */
+
+body.daken-frontend .daken-location-card a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    color: #c6a15b;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(198, 161, 91, 0.35);
+    padding-bottom: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body.daken-frontend .daken-location-card:hover {
+        border-color: rgba(198, 161, 91, 0.38);
+        box-shadow: none;
+        transform: translateY(-3px);
+    }
+
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-card__visual img {
+        transition: transform 350ms ease;
+    }
+
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-card:hover img {
+        transform: scale(1.035);
+    }
+}
+
+@media (max-width: 640px) {
+    body.daken-frontend .daken-location-card {
+        min-height: 145px;
+        padding: 24px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend .daken-location-card,
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-card__visual img {
+        transition: none;
+    }
+}
+
+
+
+
+/* =========================================================
+   DAKEN — STAGE 63.22.9.30
+   Refined homepage location cards
+   ========================================================= */
+
+body.daken-frontend .daken-location-grid .daken-location-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 205px;
+    padding: 28px 24px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(198, 161, 91, 0.075),
+            transparent 68%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(43, 27, 19, 0.48),
+            rgba(16, 11, 9, 0.28)
+        );
+
+    border: 1px solid rgba(198, 161, 91, 0.18);
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+}
+
+body.daken-frontend .daken-location-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    color: #d5af6c;
+    background: rgba(198, 161, 91, 0.075);
+
+    border: 1px solid rgba(198, 161, 91, 0.20);
+    border-radius: 50%;
+}
+
+body.daken-frontend .daken-location-grid .daken-location-card h3 {
+    margin: 0;
+    color: #e9ce9e;
+    font-size: clamp(17px, 1.5vw, 21px);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+body.daken-frontend .daken-location-grid .daken-location-card p {
+    margin: 0;
+    color: #b7a99b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+body.daken-frontend .daken-location-grid .daken-location-card a {
+    margin-top: 4px;
+    color: #d5af6c;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(198, 161, 91, 0.32);
+    padding-bottom: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    body.daken-frontend .daken-location-grid .daken-location-card:hover {
+        border-color: rgba(198, 161, 91, 0.40);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        transform: translateY(-4px);
+    }
+}
+
+@media (max-width: 640px) {
+    body.daken-frontend .daken-location-grid .daken-location-card {
+        min-height: 185px;
+        padding: 24px 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend .daken-location-grid .daken-location-card {
+        transition: none;
+        transform: none;
+    }
+}

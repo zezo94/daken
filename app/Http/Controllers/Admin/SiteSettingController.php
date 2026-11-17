@@ -18,38 +18,82 @@ class SiteSettingController extends Controller
         ]);
     }
 
+
     public function update(
         UpdateSiteSettingRequest $request,
         SiteSettings $settings
     ): RedirectResponse {
-        $data = $request->safe()->except('logo');
+        $data = $request->safe()->except([
+            'logo',
+            'favicon',
+            'reset_favicon',
+        ]);
 
         $oldLogo = $settings->get('logo');
+        $oldFavicon = $settings->get('favicon');
+
         $newLogo = null;
-
-        if ($request->hasFile('logo')) {
-            $newLogo = $request->file('logo')
-                ->store('branding', 'public');
-
-            $data['logo'] = $newLogo;
-        }
+        $newFavicon = null;
 
         try {
+            if ($request->hasFile('logo')) {
+                $newLogo = $request->file('logo')
+                    ->store('branding', 'public');
+
+                if ($newLogo === false) {
+                    throw new \RuntimeException('Logo upload failed.');
+                }
+
+                $data['logo'] = $newLogo;
+            }
+
+            if ($request->hasFile('favicon')) {
+                $newFavicon = $request->file('favicon')
+                    ->store('branding/favicons', 'public');
+
+                if ($newFavicon === false) {
+                    throw new \RuntimeException('Favicon upload failed.');
+                }
+
+                $data['favicon'] = $newFavicon;
+            } elseif ($request->boolean('reset_favicon')) {
+                $data['favicon'] = null;
+            }
+
             $settings->setMany($data);
         } catch (\Throwable $e) {
             if ($newLogo) {
                 Storage::disk('public')->delete($newLogo);
             }
 
+            if ($newFavicon) {
+                Storage::disk('public')->delete($newFavicon);
+            }
+
             throw $e;
         }
 
-        if ($newLogo && $oldLogo) {
+        if (
+            $newLogo
+            && $oldLogo
+            && $oldLogo !== $newLogo
+            && str_starts_with($oldLogo, 'branding/')
+        ) {
             Storage::disk('public')->delete($oldLogo);
+        }
+
+        if (
+            array_key_exists('favicon', $data)
+            && $oldFavicon
+            && $oldFavicon !== $newFavicon
+            && str_starts_with($oldFavicon, 'branding/favicons/')
+        ) {
+            Storage::disk('public')->delete($oldFavicon);
         }
 
         return redirect()
             ->route('admin.settings.edit')
-            ->with('success', 'تم تحديث إعدادات الموقع بنجاح.');
+            ->with('success', 'Site settings updated successfully.');
     }
+
 }

@@ -9,13 +9,27 @@ class ProductImageService
 {
     public function upload(UploadedFile $image): string
     {
-        return $image->store('products', 'public');
+        $path = $image->store('products', 'public');
+
+        if ($path === false) {
+            throw new \RuntimeException('Product image upload failed.');
+        }
+
+        return $path;
     }
 
     public function delete(?string $path): void
     {
-        if ($path) {
-            Storage::disk('public')->delete($path);
+        if (
+            $path === null
+            || ! preg_match(
+                '~\Aproducts/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $path
+            )
+        ) {
+            return;
         }
+
+        Storage::disk('public')->delete($path);
     }
 }

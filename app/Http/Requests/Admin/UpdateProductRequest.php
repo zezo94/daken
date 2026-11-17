@@ -39,11 +39,22 @@ class UpdateProductRequest extends FormRequest
                 'max:100',
                 Rule::unique('products', 'sku')->ignore($product),
             ],
-            'weight' => ['nullable', 'numeric', 'min:0'],
+            'weight' => [
+                'nullable',
+                'numeric',
+                'min:0',
+                'decimal:0,2',
+                'max:999999.99',
+            ],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'is_active' => ['required', 'boolean'],
             'is_featured' => ['required', 'boolean'],
-            'sort_order' => ['required', 'integer', 'min:0'],
+            'sort_order' => [
+                'required',
+                'integer',
+                'min:0',
+                'max:4294967295',
+            ],
         ];
     }
 }

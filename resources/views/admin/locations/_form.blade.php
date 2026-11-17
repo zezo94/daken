@@ -158,7 +158,6 @@
 
 </div>
 
-<input type="hidden" name="is_active" value="0">
 
 <x-admin.checkbox
     name="is_active"

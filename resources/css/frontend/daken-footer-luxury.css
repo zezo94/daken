@@ -1,0 +1,235 @@
+/* DAKEN LUXURY FOOTER - STAGE 63.18 */
+
+body.daken-frontend .daken-nav52-footer {
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(73,48,36,.20), transparent 60%),
+        #0d0a09;
+    border-top: 1px solid rgba(198,161,91,.25);
+    color: #f0dfbf;
+}
+
+body.daken-frontend .daken-nav52-footer__inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    align-items: start;
+    gap: clamp(28px, 4vw, 64px);
+    padding-block: clamp(55px, 7vw, 95px);
+}
+
+body.daken-frontend .daken-nav52-footer h3 {
+    color: #c6a15b;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-description {
+    max-width: 300px;
+    color: #c3b4a7;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-navigation nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-navigation nav a {
+    color: #e1d2c1;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+    min-height: 44px;
+    color: #e1d2c1;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__icon {
+    width: 22px;
+    height: 22px;
+    flex: 0 0 22px;
+    color: #c6a15b;
+}
+
+body.daken-frontend .daken-nav52-footer .footer-social__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 10px 14px;
+    border: 1px solid rgba(198,161,91,.38);
+    border-radius: 12px;
+    background: rgba(198,161,91,.06);
+    color: #f0dfbf;
+    text-decoration: none;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-label {
+    font-size: 13px;
+}
+
+body.daken-frontend .daken-nav52-footer a:focus-visible {
+    outline: 2px solid #c6a15b;
+    outline-offset: 4px;
+}
+
+@media (hover: hover) {
+    body.daken-frontend .daken-nav52-footer a:hover {
+        color: #e2bf7a;
+    }
+
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link:hover {
+        background: rgba(198,161,91,.15);
+        border-color: #c6a15b;
+        transform: translateY(-3px);
+    }
+}
+
+body.daken-frontend .daken-nav52-footer .footer-bottom {
+    border-top: 1px solid rgba(198,161,91,.18);
+    color: #a99786;
+    text-align: center;
+    padding-block: 20px;
+}
+
+@media (max-width: 900px) {
+    body.daken-frontend .daken-nav52-footer__inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    body.daken-frontend .daken-nav52-footer__inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+        padding-block: 44px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-brand {
+        text-align: center;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-description {
+        margin-inline: auto;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-navigation nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-contact {
+        align-items: flex-start;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-social__links {
+        justify-content: flex-start;
+    }
+
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+        min-width: 46px;
+        min-height: 46px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+        transition: none;
+    }
+}
+/* DAKEN FOOTER REFINEMENT - STAGE 63.18.5 */
+
+/* Desktop layout */
+body.daken-frontend .daken-nav52-footer__inner {
+    grid-template-columns: 1.4fr 1fr 1.1fr 1fr;
+    gap: clamp(30px, 4vw, 65px);
+}
+
+body.daken-frontend .daken-nav52-footer h3 {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+/* Social links: override old column direction */
+body.daken-frontend .daken-nav52-footer .footer-social__links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    padding: 10px 14px;
+}
+
+body.daken-frontend .daken-nav52-footer .daken-footer-luxury__icon {
+    width: 23px;
+    height: 23px;
+    flex: 0 0 23px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    body.daken-frontend .daken-nav52-footer__inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    body.daken-frontend .daken-nav52-footer__inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding-block: 44px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-social__links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .daken-footer-luxury__social-link {
+        min-height: 48px;
+        padding: 11px 14px;
+    }
+}

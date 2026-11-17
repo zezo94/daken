@@ -1,0 +1,174 @@
+/* ==========================================================
+   DAKEN MOBILE LAYOUT FIX - STAGE 63.14
+   Frontend only. Preserve navigation and language behavior.
+   ========================================================== */
+
+@media (max-width: 900px) {
+
+    /* Header layout */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__inner {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: min(94%, 100%);
+        max-width: 100%;
+        min-width: 0;
+        margin-inline: auto;
+        padding-block: 10px;
+    }
+
+    /* Desktop links must not occupy mobile width */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__links {
+        display: none !important;
+    }
+
+    /* Admin-configured logo with a mobile safety limit */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__logo {
+        width: min(var(--daken-logo-mobile, 105px), 90px) !important;
+        min-width: 0 !important;
+        max-width: 90px !important;
+        flex: 0 1 90px !important;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-nav53__logo img {
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Controls */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex: 0 1 auto;
+        min-width: 0;
+        gap: 8px;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-language-options {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-language-options__button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        padding: 7px 8px;
+        min-height: 36px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    /* Account remains accessible through mobile menu */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__account {
+        display: none;
+    }
+
+    /* Mobile menu */
+
+    body.daken-frontend .daken-nav53 .daken-nav53__mobile {
+        display: block !important;
+        flex: 0 0 auto;
+        position: relative;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-nav53__mobile > summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(198, 161, 91, .45);
+        border-radius: 8px;
+        background: #20130f;
+        color: #c6a15b;
+        font-size: 24px;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-nav53__mobile nav {
+        position: absolute;
+        top: calc(100% + 12px);
+        inset-inline-end: 0;
+        width: min(290px, 88vw);
+        max-width: calc(100vw - 24px);
+        max-height: 70vh;
+        overflow-y: auto;
+        z-index: 200;
+    }
+
+    /* Hero content must fit available width */
+
+    body.daken-frontend .daken-hero .daken-hero__inner {
+        width: min(90%, 100%);
+        max-width: 100%;
+        min-width: 0;
+        margin-inline: auto;
+    }
+
+    body.daken-frontend .daken-hero .daken-hero__content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-inline: 0;
+        padding-block: 85px;
+        box-sizing: border-box;
+    }
+
+    body.daken-frontend .daken-hero h1 {
+        max-width: 100%;
+        font-size: clamp(32px, 7.5vw, 48px);
+        line-height: 1.22;
+        overflow-wrap: break-word;
+    }
+
+    body.daken-frontend .daken-hero p {
+        max-width: 100%;
+        font-size: 16px;
+        line-height: 1.85;
+        overflow-wrap: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body.daken-frontend .daken-nav53 .daken-nav53__inner {
+        gap: 6px;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-nav53__logo {
+        width: min(var(--daken-logo-mobile, 105px), 72px) !important;
+        max-width: 72px !important;
+        flex-basis: 72px !important;
+    }
+
+    body.daken-frontend .daken-nav53 .daken-language-options__button {
+        padding: 6px;
+        font-size: 10px;
+    }
+
+    body.daken-frontend .daken-hero .daken-hero__content {
+        padding-block: 72px;
+    }
+
+    body.daken-frontend .daken-hero h1 {
+        font-size: clamp(30px, 8vw, 38px);
+    }
+
+    body.daken-frontend .daken-hero p {
+        font-size: 15px;
+    }
+}

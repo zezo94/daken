@@ -1,0 +1,116 @@
+/* ==========================================================
+   DAKEN CINEMATIC HERO REFINEMENT - STAGE 63.12
+   Preserves admin-managed --hero-image.
+   ========================================================== */
+
+body.daken-frontend .daken-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(600px, 78vh, 820px);
+
+    background-color: #0d0a09;
+    background-image:
+        linear-gradient(
+            to left,
+            rgba(13, 10, 9, .94) 0%,
+            rgba(13, 10, 9, .78) 35%,
+            rgba(13, 10, 9, .36) 75%,
+            rgba(13, 10, 9, .20) 100%
+        ),
+        var(--hero-image, none);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* RTL: text on right, image more visible on left */
+
+html[dir="rtl"] body.daken-frontend .daken-hero {
+    background-image:
+        linear-gradient(
+            to left,
+            rgba(13, 10, 9, .94) 0%,
+            rgba(13, 10, 9, .78) 35%,
+            rgba(13, 10, 9, .36) 75%,
+            rgba(13, 10, 9, .20) 100%
+        ),
+        var(--hero-image, none);
+}
+
+/* LTR: text on left, image more visible on right */
+
+html[dir="ltr"] body.daken-frontend .daken-hero {
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(13, 10, 9, .94) 0%,
+            rgba(13, 10, 9, .78) 35%,
+            rgba(13, 10, 9, .36) 75%,
+            rgba(13, 10, 9, .20) 100%
+        ),
+        var(--hero-image, none);
+}
+
+body.daken-frontend .daken-hero__content {
+    max-width: 680px;
+    padding-block: clamp(100px, 12vw, 155px);
+}
+
+body.daken-frontend .daken-hero h1 {
+    font-size: clamp(44px, 5.5vw, 76px);
+    line-height: 1.2;
+    color: #f0dfbf;
+}
+
+body.daken-frontend .daken-hero p {
+    max-width: 560px;
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.95;
+    color: #e0d3c6;
+}
+
+body.daken-frontend .daken-hero .daken-button {
+    min-height: 54px;
+    padding: 14px 36px;
+    font-size: 15px;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 768px) {
+    body.daken-frontend .daken-hero {
+        min-height: 620px;
+        background-position: center;
+    }
+
+    html[dir="rtl"] body.daken-frontend .daken-hero,
+    html[dir="ltr"] body.daken-frontend .daken-hero {
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(13, 10, 9, .65),
+                rgba(13, 10, 9, .90)
+            ),
+            var(--hero-image, none);
+    }
+
+    body.daken-frontend .daken-hero__content {
+        max-width: 100%;
+        padding-block: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    body.daken-frontend .daken-hero {
+        min-height: 560px;
+    }
+
+    body.daken-frontend .daken-hero h1 {
+        font-size: clamp(36px, 10vw, 48px);
+    }
+
+    body.daken-frontend .daken-hero p {
+        font-size: 16px;
+    }
+}

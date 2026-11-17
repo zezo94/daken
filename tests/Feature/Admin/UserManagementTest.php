@@ -315,7 +315,10 @@ class UserManagementTest extends TestCase
 
         $this->actingAs($target->fresh())
             ->get(route('admin.dashboard'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 
     public function test_manager_cannot_deactivate_super_admin(): void

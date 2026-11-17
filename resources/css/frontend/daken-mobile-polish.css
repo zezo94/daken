@@ -1,0 +1,126 @@
+/* ==========================================================
+   DAKEN MOBILE POLISH - STAGE 63.15
+   Hero + Footer only | Frontend | RTL/LTR
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    /* Cinematic Hero */
+
+    body.daken-frontend .daken-hero {
+        min-height: 590px;
+
+        background-size: cover;
+        background-position: center 55%;
+    }
+
+    html[dir="rtl"] body.daken-frontend .daken-hero,
+    html[dir="ltr"] body.daken-frontend .daken-hero {
+        background-image:
+            linear-gradient(
+                to bottom,
+                rgba(13, 10, 9, .42) 0%,
+                rgba(13, 10, 9, .60) 42%,
+                rgba(13, 10, 9, .90) 100%
+            ),
+            var(--hero-image, none);
+    }
+
+    body.daken-frontend .daken-hero__inner {
+        display: flex;
+        align-items: center;
+        min-height: 590px;
+    }
+
+    body.daken-frontend .daken-hero__content {
+        padding-block: 85px;
+    }
+
+    body.daken-frontend .daken-hero h1 {
+        color: #f0dfbf;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, .55);
+    }
+
+    body.daken-frontend .daken-hero p {
+        color: #f5e8d9;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+    }
+
+    /* Footer */
+
+    body.daken-frontend .daken-nav52-footer {
+        padding-top: 36px;
+    }
+
+    body.daken-frontend .daken-nav52-footer__inner {
+        width: min(90%, 100%);
+        max-width: 100%;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+        padding-block: 24px 38px;
+    }
+
+    body.daken-frontend .daken-nav52-footer h3 {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+    }
+
+    body.daken-frontend .daken-nav52-footer a,
+    body.daken-frontend .daken-nav52-footer p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-description {
+        max-width: 330px;
+        color: #d8c5ae;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-navigation nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 16px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-contact,
+    body.daken-frontend .daken-nav52-footer .footer-social__links {
+        gap: 12px;
+    }
+
+    body.daken-frontend .daken-nav52-footer .footer-bottom {
+        padding-block: 20px;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body.daken-frontend .daken-hero,
+    body.daken-frontend .daken-hero__inner {
+        min-height: 550px;
+    }
+
+    body.daken-frontend .daken-hero {
+        background-position: 48% center;
+    }
+
+    body.daken-frontend .daken-hero__content {
+        padding-block: 65px;
+    }
+
+    body.daken-frontend .daken-hero h1 {
+        font-size: clamp(30px, 8vw, 38px);
+        line-height: 1.3;
+    }
+
+    body.daken-frontend .daken-hero p {
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    body.daken-frontend .daken-nav52-footer__inner {
+        gap: 26px;
+    }
+}

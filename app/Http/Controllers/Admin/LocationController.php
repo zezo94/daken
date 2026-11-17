@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Services\AdminActivityLogger;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Throwable;
@@ -71,11 +72,22 @@ class LocationController extends Controller
             if ($request->hasFile('image')) {
                 $newImage = $request->file('image')
                     ->store('locations', 'public');
+                if ($newImage === false) {
+                    throw new \RuntimeException('Location image upload failed.');
+                }
 
                 $data['image'] = $newImage;
             }
 
-            $location = Location::create($data);
+            DB::transaction(function () use ($data): void {
+                $location = Location::create($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'location.created',
+                    $location,
+                    ['name' => $location->name]
+                );
+            });
         } catch (Throwable $exception) {
             if ($newImage) {
                 Storage::disk('public')->delete($newImage);
@@ -83,12 +95,6 @@ class LocationController extends Controller
 
             throw $exception;
         }
-
-        app(AdminActivityLogger::class)->log(
-            'location.created',
-            $location,
-            ['name' => $location->name]
-        );
 
         return redirect()
             ->route('admin.locations.index')
@@ -117,13 +123,24 @@ class LocationController extends Controller
             if ($request->hasFile('image')) {
                 $newImage = $request->file('image')
                     ->store('locations', 'public');
+                if ($newImage === false) {
+                    throw new \RuntimeException('Location image upload failed.');
+                }
 
                 $data['image'] = $newImage;
             } elseif ($request->boolean('remove_image')) {
                 $data['image'] = null;
             }
 
-            $location->update($data);
+            DB::transaction(function () use ($location, $data): void {
+                $location->update($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'location.updated',
+                    $location,
+                    ['name' => $location->name]
+                );
+            });
         } catch (Throwable $exception) {
             if ($newImage) {
                 Storage::disk('public')->delete($newImage);
@@ -133,17 +150,15 @@ class LocationController extends Controller
         }
 
         if (
-            $oldImage &&
-            ($newImage || $request->boolean('remove_image'))
+            is_string($oldImage)
+            && preg_match(
+                '~\Alocations/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $oldImage
+            )
+            && ($newImage || $request->boolean('remove_image'))
         ) {
             Storage::disk('public')->delete($oldImage);
         }
-
-        app(AdminActivityLogger::class)->log(
-            'location.updated',
-            $location,
-            ['name' => $location->name]
-        );
 
         return redirect()
             ->route('admin.locations.index')
@@ -154,17 +169,25 @@ class LocationController extends Controller
     {
         $imagePath = $location->image;
 
-        $location->delete();
+        DB::transaction(function () use ($location): void {
+            $location->delete();
 
-        if ($imagePath) {
+            app(AdminActivityLogger::class)->log(
+                'location.deleted',
+                $location,
+                ['name' => $location->name]
+            );
+        });
+
+        if (
+            is_string($imagePath)
+            && preg_match(
+                '~\Alocations/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $imagePath
+            )
+        ) {
             Storage::disk('public')->delete($imagePath);
         }
-
-        app(AdminActivityLogger::class)->log(
-            'location.deleted',
-            $location,
-            ['name' => $location->name]
-        );
 
         return redirect()
             ->route('admin.locations.index')

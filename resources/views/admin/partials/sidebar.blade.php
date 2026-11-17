@@ -102,7 +102,7 @@
             'permission' => 'system-health.view',
         ],
         [
-            'label' => $isArabic ? 'إدارة المستخدمين' : 'User Management',
+            'label' => $isArabic ? 'إدارة الموظفين' : 'Staff Management',
             'route' => 'admin.users.index',
             'active' => 'admin.users.*',
             'icon' => '👥',

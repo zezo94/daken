@@ -11,6 +11,8 @@
 @php
     $inputId = $attributes->get('id', $name);
     $errorId = $inputId . '-error';
+    $fieldKey = str_replace(['[', ']'], ['.', ''], $name);
+
 @endphp
 
 <div class="admin-form-field">
@@ -25,20 +27,20 @@
     <textarea
         {{ $attributes->except(['id'])->class([
             'admin-form-control',
-            'is-invalid' => $errors->has($name),
+            'is-invalid' => $errors->has($fieldKey),
         ]) }}
         id="{{ $inputId }}"
         name="{{ $name }}"
         rows="{{ $rows }}"
         @if($required) required @endif
         @if($dir) dir="{{ $dir }}" @endif
-        @if($errors->has($name))
+        @if($errors->has($fieldKey))
             aria-invalid="true"
         aria-describedby="{{ $errorId }}"
         @endif
-    >{{ old($name, $value) }}</textarea>
+    >{{ old($fieldKey, $value) }}</textarea>
 
-    @error($name)
+    @error($fieldKey)
     <small
         id="{{ $errorId }}"
         class="admin-field-error"

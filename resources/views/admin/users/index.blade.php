@@ -5,13 +5,15 @@
     <div class="daken-users-page" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="daken-users-heading">
             <div>
-                <h1>إدارة المستخدمين</h1>
-                <p>إضافة الموظفين وتحديد مستوياتهم وصلاحياتهم.</p>
+                <h1>إدارة الموظفين</h1>
+                <p>إنشاء حسابات الموظفين الإداريين وإدارة مستوياتهم وصلاحياتهم وحالة حساباتهم.</p>
             </div>
 
-            <a href="{{ route('admin.users.create') }}" class="daken-users-btn">
-                + إضافة مستخدم
-            </a>
+            @can('create', \App\Models\User::class)
+                <a href="{{ route('admin.users.create') }}" class="daken-users-btn">
+                    + إضافة موظف
+                </a>
+            @endcan
         </div>
 
         <div class="daken-users-card">
@@ -19,7 +21,7 @@
                 <table class="daken-users-table">
                     <thead>
                     <tr>
-                        <th>المستخدم</th>
+                        <th>الموظف</th>
                         <th>البريد الإلكتروني</th>
                         <th>المستوى</th>
                         <th>الحالة</th>
@@ -44,7 +46,11 @@
                             <td>{{ $user->admin_level }}</td>
 
                             <td>
-                                {{ $user->is_active ? 'نشط' : 'معطل' }}
+                                @if ($user->is_active)
+                                    <span class="daken-users-status">نشط</span>
+                                @else
+                                    <span class="daken-users-protected">معطل</span>
+                                @endif
                             </td>
 
                             <td>
@@ -63,21 +69,21 @@
                                     </a>
                                 @endcan
 
-                                @can('delete', $user)
-                                    <form method="POST"
-                                          action="{{ route('admin.users.destroy', $user) }}"
-                                          class="daken-users-delete-form"
-                                          onsubmit="return confirm('هل تريد حذف هذا المستخدم نهائيًا؟');">
-                                        @csrf
-                                        @method('DELETE')
-
+                                    @can('delete', $user)
                                         @if ($user->is_active)
-                                            <button type="submit" class="daken-users-danger">
-                                                تعطيل الحساب
-                                            </button>
-                                        @endif                                    </form>
-                                @endcan
+                                            <form method="POST"
+                                                  action="{{ route('admin.users.destroy', $user) }}"
+                                                  class="daken-users-delete-form"
+                                                  onsubmit="return confirm('هل تريد تعطيل حساب هذا الموظف؟ سيتم منعه من الدخول مع الاحتفاظ ببياناته وسجل نشاطه.');">
+                                                @csrf
+                                                @method('DELETE')
 
+                                                <button type="submit" class="daken-users-danger">
+                                                    تعطيل الحساب
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endcan
                                 @if ($user->is_super_admin)
                                     <span class="daken-users-protected">
                                         حساب محمي
@@ -87,7 +93,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">لا يوجد مستخدمون.</td>
+                            <td colspan="6">لا توجد حسابات موظفين لعرضها.</td>
                         </tr>
                     @endforelse
                     </tbody>

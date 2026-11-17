@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\UserManagementController;
 |
 */
 
-Route::middleware(['web', 'auth', 'admin'])
+Route::middleware(['auth', 'admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function (): void {

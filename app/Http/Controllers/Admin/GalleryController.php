@@ -7,6 +7,18 @@ use App\Models\GalleryImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
+
+
+
+
+
+
+
+
+
+
+
 
 class GalleryController extends Controller
 {
@@ -24,9 +36,22 @@ class GalleryController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $data = $this->validated($request, true);
-        $data['image_path'] = $request->file('image')->store('gallery', 'public');
+        $path = $request->file('image')->store('gallery', 'public');
+
+        if ($path === false) {
+            throw new \RuntimeException('Gallery image upload failed.');
+        }
+
+        $data['image_path'] = $path;
         unset($data['image']);
-        GalleryImage::create($data);
+
+        try {
+            GalleryImage::create($data);
+        } catch (\Throwable $exception) {
+            Storage::disk('public')->delete($path);
+
+            throw $exception;
+        }
         return redirect()->route('admin.gallery.index')->with('success', 'تمت إضافة الصورة بنجاح.');
     }
 
@@ -38,15 +63,34 @@ class GalleryController extends Controller
     public function update(Request $request, GalleryImage $gallery): RedirectResponse
     {
         $data = $this->validated($request, false);
-        if ($request->hasFile('image')) {
-            // Keep the old file; do not delete any images.
-            $data['image_path'] = $request->file('image')->store('gallery', 'public');
-        }
-        unset($data['image']);
-        $gallery->update($data);
-        return redirect()->route('admin.gallery.index')->with('success', 'تم تحديث الصورة بنجاح.');
-    }
+        $newPath = null;
 
+        if ($request->hasFile('image')) {
+            $newPath = $request->file('image')->store('gallery', 'public');
+
+            if ($newPath === false) {
+                throw new \RuntimeException('Gallery image upload failed.');
+            }
+
+            $data['image_path'] = $newPath;
+        }
+
+        unset($data['image']);
+
+        try {
+            $gallery->update($data);
+        } catch (\Throwable $exception) {
+            if ($newPath !== null) {
+                Storage::disk('public')->delete($newPath);
+            }
+
+            throw $exception;
+        }
+
+        return redirect()
+            ->route('admin.gallery.index')
+            ->with('success', 'تم تحديث الصورة بنجاح.');
+    }
     private function validated(Request $request, bool $creating): array
     {
         $data = $request->validate([

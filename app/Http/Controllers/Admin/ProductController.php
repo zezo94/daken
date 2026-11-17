@@ -126,21 +126,25 @@ class ProductController extends Controller
         }
 
         try {
-            $product = Product::create($data);
+            DB::transaction(function () use ($data): void {
+                $product = Product::create($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'product.created',
+                    $product,
+                    ['name' => $product->name]
+                );
+            });
         } catch (\Throwable $e) {
             $this->images->delete($data['image'] ?? null);
+
             throw $e;
         }
-        app(AdminActivityLogger::class)->log(
-            'product.created',
-            $product,
-            ['name' => $product->name]
-        );
+
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'تم إنشاء المنتج بنجاح.');
     }
-
     public function edit(Product $product): View
     {
         $categories = Category::orderBy('sort_order')->get();
@@ -166,36 +170,42 @@ class ProductController extends Controller
         }
 
         try {
-            $product->update($data);
+            DB::transaction(function () use ($product, $data): void {
+                $product->update($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'product.updated',
+                    $product,
+                    ['name' => $product->name]
+                );
+            });
         } catch (\Throwable $e) {
             $this->images->delete($newImage);
+
             throw $e;
         }
 
         if ($newImage) {
             $this->images->delete($oldImage);
         }
-        app(AdminActivityLogger::class)->log(
-            'product.updated',
-            $product,
-            ['name' => $product->name]
-        );
+
         return redirect()
             ->route('admin.products.index')
             ->with('success', 'تم تحديث المنتج بنجاح.');
     }
 
-
-
     public function destroy(Product $product): RedirectResponse
     {
         // حذف المنتج دون حذف ملف صورته
-        $product->delete();
-        app(AdminActivityLogger::class)->log(
-            'product.deleted',
-            $product,
-            ['name' => $product->name]
-        );
+        DB::transaction(function () use ($product): void {
+            $product->delete();
+
+            app(AdminActivityLogger::class)->log(
+                'product.deleted',
+                $product,
+                ['name' => $product->name]
+            );
+        });
         return redirect()
             ->route('admin.products.index')
             ->with(
@@ -234,19 +244,25 @@ class ProductController extends Controller
             'count' => count($ids),
         ];
 
-        DB::transaction(function () use ($ids, $action) {
-            $products = \App\Models\Product::query()
+        $activityActions = [
+            'activate' => 'products.bulk_activated',
+            'deactivate' => 'products.bulk_deactivated',
+            'delete' => 'products.bulk_deleted',
+        ];
+
+        DB::transaction(function () use ($ids, $action, $activityActions, $activityDetails) {
+            $products = Product::query()
                 ->whereIn('id', $ids)
                 ->get();
 
             if ($action === 'activate') {
-                \App\Models\Product::query()
+                Product::query()
                     ->whereIn('id', $ids)
                     ->update(['is_active' => true]);
             }
 
             if ($action === 'deactivate') {
-                \App\Models\Product::query()
+                Product::query()
                     ->whereIn('id', $ids)
                     ->update(['is_active' => false]);
             }
@@ -256,20 +272,13 @@ class ProductController extends Controller
                     $product->delete();
                 }
             }
+
+            app(AdminActivityLogger::class)->log(
+                $activityActions[$action],
+                null,
+                $activityDetails
+            );
         });
-
-
-        $activityActions = [
-            'activate' => 'products.bulk_activated',
-            'deactivate' => 'products.bulk_deactivated',
-            'delete' => 'products.bulk_deleted',
-        ];
-
-        app(AdminActivityLogger::class)->log(
-            $activityActions[$action],
-            null,
-            $activityDetails
-        );
 
 
         $messages = [

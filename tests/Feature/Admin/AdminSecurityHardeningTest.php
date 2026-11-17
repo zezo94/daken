@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
+use App\Models\AdminActivity;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -36,7 +37,10 @@ class AdminSecurityHardeningTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('admin.dashboard'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 
     public function test_inactive_admin_cannot_access_activity_log(): void
@@ -48,7 +52,10 @@ class AdminSecurityHardeningTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('admin.activities.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 
     public function test_inactive_admin_cannot_export_activities(): void
@@ -60,7 +67,10 @@ class AdminSecurityHardeningTest extends TestCase
 
         $this->actingAs($admin)
             ->get(route('admin.activities.export'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 
     public function test_admin_without_activity_permission_cannot_view_log(): void
@@ -85,14 +95,13 @@ class AdminSecurityHardeningTest extends TestCase
             ->assertForbidden();
     }
 
-
     public function test_admin_without_activity_permission_cannot_view_details(): void
     {
         $admin = $this->makeAdmin(
             permissions: ['products.manage']
         );
 
-        $activity = \App\Models\AdminActivity::query()->create([
+        $activity = AdminActivity::query()->create([
             'user_id' => $admin->id,
             'action' => 'admin.created',
             'subject_type' => User::class,
@@ -124,7 +133,10 @@ class AdminSecurityHardeningTest extends TestCase
 
         $this->actingAs($customer)
             ->get(route('admin.dashboard'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 
     public function test_super_admin_can_access_activity_log(): void
@@ -173,6 +185,9 @@ class AdminSecurityHardeningTest extends TestCase
 
         $this->actingAs($admin->fresh())
             ->get(route('admin.activities.index'))
-            ->assertForbidden();
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
+
+        $this->assertGuest('web');
     }
 }

@@ -64,6 +64,7 @@ class NavigationController extends Controller
             'items' => [
                 'required',
                 'array',
+                'max:100',
             ],
 
             'items.*.placement' => [

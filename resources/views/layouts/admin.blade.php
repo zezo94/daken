@@ -19,6 +19,29 @@
 
     <title>@yield('title', 'DAKEN Admin')</title>
 
+    @php
+        $faviconPath = app(\App\Services\SiteSettings::class)->get('favicon');
+
+        $faviconUrl = $faviconPath
+            ? asset('storage/' . $faviconPath)
+            : asset('favicon-default.png');
+
+        $faviconVersion = $faviconPath
+            ? md5($faviconPath)
+            : 'default';
+
+        $faviconUrl .= '?v=' . $faviconVersion;
+    @endphp
+
+    <link
+        rel="icon"
+        type="{{ $faviconPath && str_ends_with($faviconPath, '.webp') ? 'image/webp' : 'image/png' }}"
+        href="{{ $faviconUrl }}"
+    >
+
+
+
+
     @vite([
         'resources/css/app.css',
         'resources/js/app.js'

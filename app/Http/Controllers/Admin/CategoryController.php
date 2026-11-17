@@ -15,7 +15,6 @@ use App\Services\AdminActivityLogger;
 
 class CategoryController extends Controller
 {
-
     public function index(Request $request): View
     {
         $search = trim((string) $request->query('search', ''));
@@ -62,12 +61,22 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')
                 ->store('categories', 'public');
-
+            if ($imagePath === false) {
+                throw new \RuntimeException('Category image upload failed.');
+            }
             $data['image'] = $imagePath;
         }
 
         try {
-            $category = Category::create($data);
+            DB::transaction(function () use ($data): void {
+                $category = Category::create($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'category.created',
+                    $category,
+                    ['name' => $category->name]
+                );
+            });
         } catch (\Throwable $e) {
             if ($imagePath) {
                 Storage::disk('public')->delete($imagePath);
@@ -75,11 +84,7 @@ class CategoryController extends Controller
 
             throw $e;
         }
-        app(AdminActivityLogger::class)->log(
-            'category.created',
-            $category,
-            ['name' => $category->name]
-        );
+
         return redirect()
             ->route('admin.categories.index')
             ->with(
@@ -108,12 +113,23 @@ class CategoryController extends Controller
         if ($request->hasFile('image')) {
             $newImage = $request->file('image')
                 ->store('categories', 'public');
+            if ($newImage === false) {
+                throw new \RuntimeException('Category image upload failed.');
+            }
 
             $data['image'] = $newImage;
         }
 
         try {
-            $category->update($data);
+            DB::transaction(function () use ($category, $data): void {
+                $category->update($data);
+
+                app(AdminActivityLogger::class)->log(
+                    'category.updated',
+                    $category,
+                    ['name' => $category->name]
+                );
+            });
         } catch (\Throwable $e) {
             if ($newImage) {
                 Storage::disk('public')->delete($newImage);
@@ -122,15 +138,16 @@ class CategoryController extends Controller
             throw $e;
         }
 
-        if ($newImage && $oldImage) {
+        if (
+            $newImage
+            && is_string($oldImage)
+            && preg_match(
+                '~\Acategories/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $oldImage
+            )
+        ) {
             Storage::disk('public')->delete($oldImage);
         }
-
-        app(AdminActivityLogger::class)->log(
-            'category.updated',
-            $category,
-            ['name' => $category->name]
-        );
 
         return redirect()
             ->route('admin.categories.index')
@@ -143,26 +160,49 @@ class CategoryController extends Controller
     public function destroy(
         Category $category
     ): RedirectResponse {
-        if ($category->products()->exists()) {
+        $imagePath = null;
+
+        $deleted = DB::transaction(function () use (
+            $category,
+            &$imagePath
+        ): bool {
+            $lockedCategory = Category::query()
+                ->whereKey($category->getKey())
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            if ($lockedCategory->products()->exists()) {
+                return false;
+            }
+
+            $imagePath = $lockedCategory->image;
+
+            $lockedCategory->delete();
+
+            app(AdminActivityLogger::class)->log(
+                'category.deleted',
+                $lockedCategory,
+                ['name' => $lockedCategory->name]
+            );
+
+            return true;
+        });
+
+        if (! $deleted) {
             return back()->withErrors([
-                'category' =>
-                    'لا يمكن حذف تصنيف يحتوي على منتجات.',
+                'category' => 'لا يمكن حذف تصنيف يحتوي على منتجات.',
             ]);
         }
 
-        $imagePath = $category->image;
-
-        $category->delete();
-
-        if ($imagePath) {
+        if (
+            is_string($imagePath)
+            && preg_match(
+                '~\Acategories/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                $imagePath
+            )
+        ) {
             Storage::disk('public')->delete($imagePath);
         }
-
-        app(AdminActivityLogger::class)->log(
-            'category.deleted',
-            $category,
-            ['name' => $category->name]
-        );
 
         return redirect()
             ->route('admin.categories.index')
@@ -171,11 +211,6 @@ class CategoryController extends Controller
                 'تم حذف التصنيف بنجاح.'
             );
     }
-
-
-
-
-
     public function bulkDestroy(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -218,21 +253,29 @@ class CategoryController extends Controller
                 $category->delete();
                 $deletedCount++;
             }
+
+            if ($deletedCount > 0) {
+                app(AdminActivityLogger::class)->log(
+                    'categories.bulk_deleted',
+                    null,
+                    [
+                        'deleted_count' => $deletedCount,
+                        'skipped_count' => $skippedCount,
+                    ]
+                );
+            }
         });
 
         foreach ($imagesToDelete as $imagePath) {
-            Storage::disk('public')->delete($imagePath);
-        }
-
-        if ($deletedCount > 0) {
-            app(AdminActivityLogger::class)->log(
-                'categories.bulk_deleted',
-                null,
-                [
-                    'deleted_count' => $deletedCount,
-                    'skipped_count' => $skippedCount,
-                ]
-            );
+            if (
+                is_string($imagePath)
+                && preg_match(
+                    '~\Acategories/[^/\\\\]+\.(?:jpg|jpeg|png|webp)\z~i',
+                    $imagePath
+                )
+            ) {
+                Storage::disk('public')->delete($imagePath);
+            }
         }
 
         return redirect()
@@ -243,5 +286,4 @@ class CategoryController extends Controller
                 "تم تجاوز {$skippedCount} تصنيف مرتبط بمنتجات."
             );
     }
-
 }

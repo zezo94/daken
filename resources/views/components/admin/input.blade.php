@@ -11,6 +11,7 @@
 @php
     $inputId = $attributes->get('id', $name);
     $errorId = $inputId . '-error';
+    $fieldKey = str_replace(['[', ']'], ['.', ''], $name);
 @endphp
 
 <div class="admin-form-field">
@@ -24,22 +25,22 @@
 
     <input
         {{ $attributes->except(['id'])->class([
-            'admin-form-control',
-            'is-invalid' => $errors->has($name),
-        ]) }}
+     'admin-form-control',
+     'is-invalid' => $errors->has($fieldKey),
+ ]) }}
         id="{{ $inputId }}"
         type="{{ $type }}"
         name="{{ $name }}"
-        value="{{ old($name, $value) }}"
+        value="{{ old($fieldKey, $value) }}"
         @if($required) required @endif
         @if($dir) dir="{{ $dir }}" @endif
-        @if($errors->has($name))
+        @if($errors->has($fieldKey))
             aria-invalid="true"
         aria-describedby="{{ $errorId }}"
         @endif
     >
 
-    @error($name)
+    @error($fieldKey)
     <small
         id="{{ $errorId }}"
         class="admin-field-error"

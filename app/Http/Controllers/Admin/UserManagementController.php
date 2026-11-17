@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
+
+
+
+
+
+
+
+
+
+
 
 class UserManagementController extends Controller
 {
@@ -133,7 +144,7 @@ class UserManagementController extends Controller
                 $target->admin_permissions ?? []
             );
             $wasActive = (bool) $target->is_active;
-
+            $oldEmail = (string) $target->email;
             $newLevel = (int) $data['admin_level'];
             $newPermissions = $this->normalizePermissions(
                 $data['admin_permissions'] ?? []
@@ -144,7 +155,14 @@ class UserManagementController extends Controller
             $levelChanged = $oldLevel !== $newLevel;
             $permissionsChanged = $oldPermissions !== $newPermissions;
             $deactivated = $wasActive && ! $newActive;
+            $emailChanged = $oldEmail !== $data['email'];
 
+            $securityChanged =
+                $passwordChanged ||
+                $emailChanged ||
+                $levelChanged ||
+                $permissionsChanged ||
+                $deactivated;
             $before = [
                 'admin_level' => $oldLevel,
                 'admin_permissions' => $oldPermissions,
@@ -162,16 +180,14 @@ class UserManagementController extends Controller
             if ($passwordChanged) {
                 $attributes['password'] = $data['password'];
             }
+            if ($securityChanged) {
+                $attributes['remember_token'] = Str::random(60);
+            }
 
             $target->forceFill($attributes)->save();
 
             // Invalidate sessions after security-sensitive changes.
-            if (
-                $passwordChanged ||
-                $levelChanged ||
-                $permissionsChanged ||
-                $deactivated
-            ) {
+            if ($securityChanged) {
                 app(AdminSessionRevoker::class)
                     ->revokeForUser($target->id);
             }
@@ -194,12 +210,8 @@ class UserManagementController extends Controller
                     'password_changed' => $passwordChanged,
                     'level_changed' => $levelChanged,
                     'permissions_changed' => $permissionsChanged,
-                    'sessions_revoked' => (
-                        $passwordChanged ||
-                        $levelChanged ||
-                        $permissionsChanged ||
-                        $deactivated
-                    ),
+                    'email_changed' => $emailChanged,
+                    'sessions_revoked' => $securityChanged,
                 ]
             );
         });
@@ -234,6 +246,7 @@ class UserManagementController extends Controller
 
             $target->forceFill([
                 'is_active' => false,
+                'remember_token' => Str::random(60),
             ])->save();
 
             app(AdminSessionRevoker::class)

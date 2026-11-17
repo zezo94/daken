@@ -95,7 +95,7 @@ class AnalyticsExportController extends Controller
                     ->cursor()
                     ->each(function ($page) use ($output) {
                         fputcsv($output, [
-                            $page->path,
+                            $this->safeCsvText($page->path),
                             $page->total,
                         ]);
                     });
@@ -123,8 +123,8 @@ class AnalyticsExportController extends Controller
                     ->each(function ($product) use ($output) {
                         fputcsv($output, [
                             $product->id,
-                            data_get($product->name, 'ar', ''),
-                            data_get($product->name, 'en', ''),
+                            $this->safeCsvText(data_get($product->name, 'ar', '')),
+                            $this->safeCsvText(data_get($product->name, 'en', '')),
                             $product->period_views_count,
                         ]);
                     });
@@ -136,4 +136,18 @@ class AnalyticsExportController extends Controller
             'Cache-Control' => 'no-store',
         ]);
     }
+
+    private function safeCsvText(mixed $value): string
+    {
+        $text = (string) ($value ?? '');
+
+        if (preg_match('/^[\s\x00-\x1F]*[=+\-@]/u', $text)) {
+            return "'" . $text;
+        }
+
+        return $text;
+    }
+
+
+
 }

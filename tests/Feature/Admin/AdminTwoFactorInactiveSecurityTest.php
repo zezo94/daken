@@ -62,7 +62,7 @@ class AdminTwoFactorInactiveSecurityTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_customer_is_not_rejected_by_inactive_admin_middleware(): void
+    public function test_customer_cannot_complete_admin_two_factor_challenge(): void
     {
         $customer = User::factory()->create([
             'role' => 'customer',
@@ -72,16 +72,22 @@ class AdminTwoFactorInactiveSecurityTest extends TestCase
         $response = $this
             ->withSession([
                 'login.id' => $customer->id,
+                'login.remember' => false,
             ])
             ->post(route('two-factor.login.store'), [
                 'code' => 'invalid-code',
             ]);
 
-        $response->assertSessionHas('login.id');
+        $response->assertRedirect(route('login'));
 
-        $this->assertGuest();
+        $response->assertSessionHasErrors('email');
+
+        $response->assertSessionMissing('login.id');
+
+        $response->assertSessionMissing('login.remember');
+
+        $this->assertGuest('web');
     }
-
 
 
     public function test_inactive_admin_policy_and_database_state(): void

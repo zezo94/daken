@@ -14,10 +14,12 @@ class LocationController extends Controller
         $filters = $request->validate([
             'search' => ['nullable', 'string', 'max:100'],
             'city' => ['nullable', 'string', 'max:120'],
+            'per_page' => ['nullable', 'integer', 'in:6,12,24,48'],
         ]);
 
         $search = trim($filters['search'] ?? '');
         $city = trim($filters['city'] ?? '');
+        $perPage = (int) ($filters['per_page'] ?? 12);
 
         $cities = Location::query()
             ->where('is_active', true)
@@ -43,14 +45,15 @@ class LocationController extends Controller
             })
             ->orderBy('sort_order')
             ->orderBy('id')
-            ->paginate(12)
+            ->paginate($perPage)
             ->withQueryString();
 
         return view('pages.locations.index', compact(
             'locations',
             'cities',
             'search',
-            'city'
+            'city',
+            'perPage'
         ));
     }
 }

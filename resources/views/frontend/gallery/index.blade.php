@@ -5,7 +5,7 @@
     $ar = app()->getLocale() === 'ar';
     $categories = ['' => [$ar ? 'الكل' : 'All', ''], 'products' => [$ar ? 'المنتجات' : 'Products', 'products'], 'packaging' => [$ar ? 'التغليف' : 'Packaging', 'packaging'], 'campaigns' => [$ar ? 'الحملات' : 'Campaigns', 'campaigns'], 'events' => [$ar ? 'الفعاليات' : 'Events', 'events'], 'general' => [$ar ? 'عام' : 'General', 'general']];
 @endphp
-<main class="dg-gallery" dir="{{ $ar ? 'rtl' : 'ltr' }}">
+<div class="dg-gallery" dir="{{ $ar ? 'rtl' : 'ltr' }}">
     <div class="dg-gallery__container">
         <header class="dg-gallery__hero"><span>DAKEN CHOCOLATE</span><h1>{{ $ar ? 'معرض الصور' : 'Photo Gallery' }}</h1><p>{{ $ar ? 'لحظات وصور من عالم DAKEN' : 'Explore the world of DAKEN through images' }}</p></header>
         <nav class="dg-gallery__filters" aria-label="{{ $ar ? 'تصنيفات المعرض' : 'Gallery categories' }}">
@@ -27,5 +27,5 @@
         </div>
         <div class="dg-gallery__pagination">{{ $images->links() }}</div>
     </div>
-</main>
+</div>
 @endsection

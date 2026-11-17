@@ -85,6 +85,10 @@ class HomepageController extends Controller
             $newImage = $request->file('hero_image')
                 ->store('homepage', 'public');
 
+            if ($newImage === false) {
+                throw new \RuntimeException('Homepage hero image upload failed.');
+            }
+
             $data['hero_image'] = $newImage;
         }
 

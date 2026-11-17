@@ -116,6 +116,67 @@
                 @endif
             </div>
 
+            <div class="admin-form-field">
+                <label for="brand-favicon">
+                    {{ $isArabic ? 'أيقونة الموقع (Favicon)' : 'Website Favicon' }}
+                </label>
+
+                <input
+                    id="brand-favicon"
+                    name="favicon"
+                    type="file"
+                    accept=".png,.webp,image/png,image/webp"
+                    class="admin-form-control"
+                    @error('favicon')
+                    aria-invalid="true"
+                    aria-describedby="brand-favicon-error"
+                    @enderror
+                >
+
+                @error('favicon')
+                <small
+                    id="brand-favicon-error"
+                    class="admin-field-error"
+                    role="alert"
+                >
+                    {{ $message }}
+                </small>
+                @enderror
+
+                <small>
+                    {{ $isArabic
+                        ? 'PNG أو WebP، بحد أقصى 512 كيلوبايت. يفضل استخدام صورة مربعة.'
+                        : 'PNG or WebP, maximum 512 KB. A square image is recommended.' }}
+                </small>
+
+                <div style="margin-top: 16px;">
+                    <img
+                        src="{{ !empty($settings['favicon'])
+                ? asset('storage/'.$settings['favicon'])
+                : asset('favicon-default.png') }}"
+                        alt="Current website favicon"
+                        width="64"
+                        height="64"
+                        style="object-fit: contain;"
+                    >
+                </div>
+
+                <label style="display: flex; align-items: center; gap: 8px; margin-top: 16px;">
+                    <input
+                        type="checkbox"
+                        name="reset_favicon"
+                        value="1"
+                    >
+                    <span>
+            {{ $isArabic
+                ? 'استعادة أيقونة DAKEN الافتراضية'
+                : 'Restore default DAKEN favicon' }}
+        </span>
+                </label>
+            </div>
+
+
+
             <div class="admin-form-actions">
                 <x-admin.button type="submit">
                     {{ $isArabic ? 'حفظ التعديلات' : 'Save Changes' }}

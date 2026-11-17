@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             messageElement.textContent =
                 form.dataset.confirmMessage ||
+                form.dataset.confirm ||
                 'هل أنت متأكد من المتابعة؟';
-
             dialog.showModal();
         });
     });
@@ -59,10 +59,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         form.dataset.confirmApproved = 'true';
 
-        if (form.requestSubmit) {
-            form.requestSubmit();
-        } else {
-            HTMLFormElement.prototype.submit.call(form);
+        try {
+            if (form.requestSubmit) {
+                form.requestSubmit();
+            } else {
+                HTMLFormElement.prototype.submit.call(form);
+            }
+        } finally {
+            delete form.dataset.confirmApproved;
         }
     });
 

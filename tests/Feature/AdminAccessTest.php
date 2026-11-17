@@ -24,9 +24,11 @@ class AdminAccessTest extends TestCase
 
         $this->actingAs($customer)
             ->get('/admin')
-            ->assertForbidden();
-    }
+            ->assertRedirect(route('login'))
+            ->assertSessionHasErrors('email');
 
+        $this->assertGuest('web');
+    }
 
     public function test_admin_can_access_dashboard(): void
     {

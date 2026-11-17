@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\AdminLoginPolicy;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,13 +15,23 @@ class EnsureUserIsAdmin
     ): Response {
         $user = $request->user();
 
-        abort_unless(
-            $user
-            && $user->role === 'admin'
-            && $user->is_active,
-            403
-        );
+        if ($user && AdminLoginPolicy::allows($user)) {
+            return $next($request);
+        }
 
-        return $next($request);
+        if ($user) {
+            auth()->guard('web')->logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()
+                ->route('login')
+                ->withErrors([
+                    'email' => __('auth.failed'),
+                ]);
+        }
+
+        abort(403);
     }
 }

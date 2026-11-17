@@ -20,6 +20,7 @@ class ProductController extends Controller
                 'nullable',
                 'in:default,newest,oldest,name_asc,name_desc',
             ],
+            'per_page' => ['nullable', 'integer', 'in:6,12,24,48'],
         ]);
 
         $locale = app()->getLocale();
@@ -27,6 +28,7 @@ class ProductController extends Controller
         $search = trim($filters['search'] ?? '');
         $category = $filters['category'] ?? null;
         $sort = $filters['sort'] ?? 'default';
+        $perPage = (int) ($filters['per_page'] ?? 12);
 
         $categories = Category::query()
             ->where('is_active', true)
@@ -79,7 +81,7 @@ class ProductController extends Controller
 
         $products = $query
             ->orderBy('id')
-            ->paginate(12)
+            ->paginate($perPage)
             ->withQueryString();
 
         return view('pages.products.index', compact(
@@ -87,7 +89,8 @@ class ProductController extends Controller
             'categories',
             'search',
             'category',
-            'sort'
+            'sort',
+            'perPage'
         ));
     }
 

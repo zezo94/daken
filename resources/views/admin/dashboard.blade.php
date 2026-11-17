@@ -164,7 +164,7 @@
                 'permission' => 'activities.view',
             ],
             [
-                'label' => $ar ? 'إدارة المستخدمين' : 'User Management',
+                'label' => $ar ? 'إدارة الموظفين' : 'Staff Management',
                 'route' => 'admin.users.index',
                 'icon' => '👥',
                 'permission' => 'users.manage',

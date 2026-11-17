@@ -1,0 +1,504 @@
+
+/*
+ * DAKEN — Products Dark Luxury
+ * Stage 63.22.9.11
+ *
+ * Catalog-specific visual styling.
+ * Frontend only — RTL / LTR compatible.
+ *
+ * Product cards:
+ * daken-luxury-cards.css
+ *
+ * Product image frames:
+ * daken-layered-image-frames.css
+ */
+
+/* ==========================================
+   1. Catalog presentation
+   ========================================== */
+
+body.daken-frontend .products-page {
+    padding-block: clamp(48px, 7vw, 100px);
+    color: #f0dfbf;
+}
+
+body.daken-frontend .products-page__header {
+    max-width: 760px;
+    margin-inline: auto;
+    margin-bottom: clamp(32px, 5vw, 60px);
+    text-align: center;
+}
+
+body.daken-frontend .products-page__eyebrow {
+    color: #c6a15b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+body.daken-frontend .products-page__header h1 {
+    margin-block: 12px 18px;
+    color: #f0dfbf;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.2;
+}
+
+body.daken-frontend .products-page__header p {
+    color: #c3b4a7;
+    font-size: clamp(15px, 1.5vw, 18px);
+    line-height: 1.9;
+}
+
+/* ==========================================
+   2. Luxury filters
+   ========================================== */
+
+body.daken-frontend .products-filters {
+    gap: 18px;
+    padding: clamp(20px, 3vw, 32px);
+
+    border: 1px solid rgba(198, 161, 91, .24);
+    border-radius: 18px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(41, 27, 22, .96),
+        rgba(23, 15, 12, .98)
+    );
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .18);
+}
+
+body.daken-frontend .products-filters__field label {
+    color: #f0dfbf;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+body.daken-frontend .products-filters__field input,
+body.daken-frontend .products-filters__field select {
+    min-width: 0;
+    min-height: 50px;
+    padding: 12px 15px;
+
+    border: 1px solid rgba(198, 161, 91, .3);
+    border-radius: 10px;
+
+    background: #160f0c;
+    color: #f8f2e9;
+
+    font-size: 15px;
+    color-scheme: dark;
+}
+
+body.daken-frontend .products-filters__field input::placeholder {
+    color: #a99a8b;
+}
+
+body.daken-frontend .products-filters__field input:focus,
+body.daken-frontend .products-filters__field select:focus {
+    border-color: #c6a15b;
+    outline: 2px solid rgba(198, 161, 91, .5);
+    outline-offset: 2px;
+}
+
+/* ==========================================
+   3. Filter buttons
+   ========================================== */
+
+body.daken-frontend .products-filters__submit,
+body.daken-frontend .products-filters__reset {
+    min-height: 50px;
+    padding-inline: 22px;
+    border-radius: 10px;
+    font-size: 15px;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+}
+
+body.daken-frontend .products-filters__submit {
+    border: 1px solid #c6a15b;
+    background: #c6a15b;
+    color: #160f0c;
+}
+
+body.daken-frontend .products-filters__reset {
+    border: 1px solid rgba(198, 161, 91, .45);
+    background: transparent;
+    color: #f0dfbf;
+}
+
+@media (hover: hover) {
+
+    body.daken-frontend .products-filters__submit:hover {
+        background: #e2bf7a;
+    }
+
+    body.daken-frontend .products-filters__reset:hover {
+        border-color: #c6a15b;
+        background: rgba(198, 161, 91, .1);
+    }
+}
+
+/* ==========================================
+   4. Results
+   ========================================== */
+
+body.daken-frontend .products-results {
+    margin-block: 26px;
+    color: #c3b4a7;
+    font-size: 15px;
+}
+
+body.daken-frontend .products-results strong {
+    color: #f0dfbf;
+}
+
+/* ==========================================
+   5. Catalog grid
+   ========================================== */
+
+/*
+ * Three columns on desktop.
+ * Two columns on tablets.
+ * One column on mobile.
+ *
+ * Related-products grid is not affected.
+ */
+
+body.daken-frontend .products-page .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(18px, 2.5vw, 32px);
+}
+
+/* ==========================================
+   6. Empty results
+   ========================================== */
+
+body.daken-frontend .products-empty {
+    padding: clamp(44px, 7vw, 90px) 24px;
+
+    border: 1px dashed rgba(198, 161, 91, .4);
+    border-radius: 18px;
+
+    background: #20130f;
+}
+
+body.daken-frontend .products-empty h2 {
+    color: #f0dfbf;
+}
+
+body.daken-frontend .products-empty p {
+    color: #c3b4a7;
+}
+
+body.daken-frontend .products-empty a {
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+
+    background: #c6a15b;
+    color: #160f0c;
+}
+
+/* ==========================================
+   7. Responsive catalog
+   ========================================== */
+
+@media (max-width: 900px) {
+
+    body.daken-frontend .products-page .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+
+    body.daken-frontend .products-page {
+        padding-block: 36px 64px;
+    }
+
+    body.daken-frontend .products-page__header {
+        margin-bottom: 30px;
+    }
+
+    body.daken-frontend .products-page__header h1 {
+        font-size: clamp(30px, 8vw, 40px);
+    }
+
+    body.daken-frontend .products-filters {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 20px;
+        gap: 16px;
+    }
+
+    body.daken-frontend .products-filters__actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    body.daken-frontend .products-filters__submit,
+    body.daken-frontend .products-filters__reset {
+        width: 100%;
+        min-width: 0;
+    }
+
+    body.daken-frontend .products-page .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    body.daken-frontend .products-results {
+        gap: 8px;
+        font-size: 14px;
+    }
+}
+
+/* ==========================================
+   8. Accessibility
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body.daken-frontend .products-filters__submit,
+    body.daken-frontend .products-filters__reset {
+        transition: none;
+    }
+}
+
+
+
+/*
+ * DAKEN — Featured Products Carousel
+ * Stage 63.22.9.14
+ */
+
+body.daken-frontend .daken-featured-carousel {
+    --featured-gap: 30px;
+    position: relative;
+    min-width: 0;
+}
+
+body.daken-frontend
+.daken-featured-carousel .daken-product-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns:
+        calc((100% - 2 * var(--featured-gap)) / 3);
+    grid-template-columns: none;
+
+    column-gap: var(--featured-gap);
+    row-gap: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-inline: contain;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+
+    padding-block: 14px 24px;
+}
+
+body.daken-frontend
+.daken-featured-carousel .daken-product-grid::-webkit-scrollbar {
+    display: none;
+}
+
+body.daken-frontend
+.daken-featured-carousel .product-card {
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+body.daken-frontend
+.daken-featured-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    margin-top: 10px;
+}
+
+body.daken-frontend
+.daken-featured-carousel__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border: 1px solid rgba(198, 161, 91, .65);
+    border-radius: 50%;
+
+    background: #160f0c;
+    color: #d6a64d;
+
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        opacity .2s ease;
+}
+
+body.daken-frontend
+.daken-featured-carousel__arrow:hover:not(:disabled) {
+    background: #2a1b13;
+    border-color: #e2bf7a;
+}
+
+body.daken-frontend
+.daken-featured-carousel__arrow:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+@media (max-width: 992px) {
+    body.daken-frontend .daken-featured-carousel {
+        --featured-gap: 22px;
+    }
+
+    body.daken-frontend
+    .daken-featured-carousel .daken-product-grid {
+        grid-auto-columns:
+            calc((100% - var(--featured-gap)) / 2);
+    }
+}
+
+@media (max-width: 640px) {
+    body.daken-frontend .daken-featured-carousel {
+        --featured-gap: 16px;
+    }
+
+    body.daken-frontend
+    .daken-featured-carousel .daken-product-grid {
+        grid-auto-columns: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend
+    .daken-featured-carousel .daken-product-grid {
+        scroll-behavior: auto;
+    }
+
+    body.daken-frontend
+    .daken-featured-carousel__arrow {
+        transition: none;
+    }
+}
+
+/*
+ * DAKEN — Collections Carousel
+ * Stage 63.22.9.18
+ */
+
+body.daken-frontend .daken-collections-carousel {
+    --collections-gap: 30px;
+    position: relative;
+    min-width: 0;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - 2 * var(--collections-gap)) / 3);
+    grid-template-columns: none;
+
+    gap: var(--collections-gap);
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+
+    padding-block: 20px 28px;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-grid::-webkit-scrollbar {
+    display: none;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-layered-frame {
+    min-width: 0;
+    margin: 18px 20px 14px;
+
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card__visual {
+    width: 100%;
+    min-width: 0;
+}
+
+body.daken-frontend
+.daken-collections-carousel .daken-category-card__visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media (max-width: 992px) {
+    body.daken-frontend .daken-collections-carousel {
+        --collections-gap: 22px;
+    }
+
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-grid {
+        grid-auto-columns: calc((100% - var(--collections-gap)) / 2);
+    }
+}
+
+@media (max-width: 640px) {
+    body.daken-frontend .daken-collections-carousel {
+        --collections-gap: 16px;
+    }
+
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-grid {
+        grid-auto-columns: 100%;
+    }
+
+    body.daken-frontend
+    .daken-collections-carousel .daken-layered-frame {
+        margin: 14px 15px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.daken-frontend
+    .daken-collections-carousel .daken-category-grid {
+        scroll-behavior: auto;
+    }
+}

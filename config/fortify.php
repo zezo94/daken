@@ -16,6 +16,7 @@ return [
     */
 
     'guard' => 'web',
+    'auth_middleware' => 'staff.auth',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,8 +74,7 @@ return [
     |
     */
 
-    'home' => '/home',
-
+    'home' => '/admin',
     /*
     |--------------------------------------------------------------------------
     | Fortify Routes Prefix / Subdomain
@@ -101,8 +101,11 @@ return [
     |
     */
 
-    'middleware' => ['web'],
-
+    'middleware' => [
+        'web',
+        \App\Http\Middleware\RejectInactiveAdminTwoFactor::class,
+        \App\Http\Middleware\ThrottleStaffPasswordReset::class,
+    ],
     /*
     |--------------------------------------------------------------------------
     | Rate Limiting
@@ -161,9 +164,10 @@ return [
     |
     */
 
-    'features' => [
-        Features::registration(),
-        Features::resetPasswords(),
+        'features' => [
+            // Public self-registration is disabled.
+            // User accounts are created by authorized administrators.
+            Features::resetPasswords(),
         // Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),

@@ -58,6 +58,11 @@ class SitePageController extends Controller
         try {
             if ($request->hasFile('image')) {
                 $newImage = $request->file('image')->store('site-pages', 'public');
+
+                if ($newImage === false) {
+                    throw new \RuntimeException('Site page image upload failed.');
+                }
+
                 $data['image'] = $newImage;
             }
             $page->update($data);

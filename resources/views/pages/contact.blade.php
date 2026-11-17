@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <main class="contact-page">
+    <div class="contact-page">
 
 
 
@@ -188,6 +188,6 @@
 
         </section>
 
-    </main>
+    </div>
 
 @endsection

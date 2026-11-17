@@ -3,16 +3,31 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Support\AdminLoginPolicy;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
+use App\Services\AdminSessionRevoker;
+use Illuminate\Support\Str;
+
+
+
+
+
+
+
+
+
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
     public function update(User $user, array $input): void
     {
+        abort_unless(AdminLoginPolicy::allows($user), 403);
+
         Validator::make($input, [
             'email' => [
                 'required',
@@ -31,13 +46,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             (string) $input['current_password'],
             $user->password
         )) {
-            throw \Illuminate\Validation\ValidationException::withMessages([
+            throw ValidationException::withMessages([
                 'current_password' => 'كلمة المرور الحالية غير صحيحة.',
             ])->errorBag('updateProfileInformation');
         }
 
-        // Only email is accepted. Never update name, role,
-        // admin level, permissions, or account status.
         if ($input['email'] === $user->email) {
             return;
         }
@@ -46,15 +59,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'email' => $input['email'],
                 'email_verified_at' => null,
+                'remember_token' => Str::random(60),
             ])->save();
 
             $user->sendEmailVerificationNotification();
-
-            return;
+        } else {
+            $user->forceFill([
+                'email' => $input['email'],
+                'remember_token' => Str::random(60),
+            ])->save();
         }
 
-        $user->forceFill([
-            'email' => $input['email'],
-        ])->save();
+        app(AdminSessionRevoker::class)->revokeForUser($user->id);
     }
 }

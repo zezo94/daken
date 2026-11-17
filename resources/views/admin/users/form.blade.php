@@ -14,12 +14,15 @@
     <div class="daken-users-page" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="daken-users-heading">
             <div>
-                <h1>{{ $editing ? 'تعديل المستخدم' : 'إضافة مستخدم' }}</h1>
-                <p>حدد بيانات الحساب ومستواه والصلاحيات المسموح بها.</p>
+                <h1>{{ $editing ? 'تعديل حساب موظف' : 'إضافة موظف جديد' }}</h1>
+                <p>
+                    إدارة حسابات موظفي DAKEN المخوّلين فقط.
+                    حدد بيانات الموظف ومستواه الإداري والصلاحيات المسموح بها.
+                </p>
             </div>
 
             <a href="{{ route('admin.users.index') }}" class="daken-users-back">
-                العودة للمستخدمين
+                العودة لإدارة الموظفين
             </a>
         </div>
 
@@ -59,6 +62,8 @@
                     </label>
                     <input id="password" name="password"
                            type="password"
+                           minlength="12"
+
                            {{ $editing ? '' : 'required' }}
                            autocomplete="new-password">
                     @error('password') <small class="daken-users-error">{{ $message }}</small> @enderror
@@ -72,7 +77,9 @@
                            {{ $editing ? '' : 'required' }}
                            autocomplete="new-password">
                 </div>
-
+                @error('password_confirmation')
+                <small class="daken-users-error">{{ $message }}</small>
+                @enderror
                 <div>
                     <label for="admin_level">المستوى الإداري</label>
                     <select id="admin_level" name="admin_level" required>
@@ -84,6 +91,8 @@
                                     @if ($level === 70) — مدير مستخدمين @endif
                                     @if ($level === 50) — مدير قسم @endif
                                     @if ($level === 20) — محرر @endif
+                                    @if ($level === 90) — مدير عام @endif
+                                    @if ($level === 0) — بدون مستوى إداري @endif
                                 </option>
                             @endif
                         @endforeach
@@ -104,8 +113,11 @@
                 </div>
             </div>
 
-            <h2 class="daken-users-subtitle">صلاحيات المستخدم</h2>
-
+            <h2 class="daken-users-subtitle">صلاحيات الموظف</h2>
+            <p>
+                حدد الصلاحيات اللازمة لمهام الموظف فقط.
+                لن يتمكن الموظف من الوصول إلى الأقسام التي لم تُمنح له صلاحيتها.
+            </p>
             <div class="daken-users-permissions">
                 @foreach ($permissions as $key => $label)
                     @if (auth()->user()->hasAdminPermission($key))
@@ -126,7 +138,7 @@
 
             <div class="daken-users-actions">
                 <button type="submit" class="daken-users-btn">
-                    {{ $editing ? 'حفظ التعديلات' : 'إنشاء المستخدم' }}
+                    {{ $editing ? 'حفظ التعديلات' : 'إنشاء حساب الموظف' }}
                 </button>
 
                 <a href="{{ route('admin.users.index') }}" class="daken-users-back">

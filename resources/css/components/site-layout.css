@@ -201,3 +201,70 @@
         padding-top: 45px;
     }
 }
+
+
+/* ==========================================
+   DAKEN LANGUAGE SWITCHER
+   Frontend only
+   ========================================== */
+
+.daken-frontend .daken-language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(214, 166, 77, 0.45);
+    border-radius: 10px;
+    background: #14100e;
+    color: #f0d18a;
+    white-space: nowrap;
+}
+
+.daken-frontend .daken-language-switcher__flag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.daken-frontend .daken-language-switcher select {
+    min-width: 100px;
+    padding: 7px 4px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #f0d18a;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.daken-frontend .daken-language-switcher select option {
+    background: #14100e;
+    color: #f0d18a;
+}
+
+.daken-frontend .daken-language-switcher:focus-within {
+    border-color: #d6a64d;
+    box-shadow: 0 0 0 2px rgba(214, 166, 77, 0.2);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .daken-frontend .daken-language-switcher {
+        gap: 5px;
+        padding: 4px 7px;
+    }
+
+    .daken-frontend .daken-language-switcher select {
+        min-width: 85px;
+        font-size: 12px;
+    }
+
+    .daken-frontend .daken-language-switcher__flag {
+        font-size: 18px;
+    }
+}

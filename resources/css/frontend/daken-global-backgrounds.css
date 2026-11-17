@@ -1,0 +1,129 @@
+﻿
+/* ==========================================================
+   DAKEN — UNIFIED FRONTEND BACKGROUND SYSTEM
+   Stage 63.22.9.26
+
+   Shared background for all public pages.
+   Admin styles remain untouched.
+   ========================================================== */
+
+/* 1. Shared design tokens */
+
+body.daken-frontend {
+    --dk-bg-base: #0b0909;
+    --dk-bg-soft: #160e0b;
+    --dk-bg-brown: #21130f;
+
+    --dk-surface-edge: var(--dk-bg-base);
+    --dk-surface-warm: var(--dk-bg-soft);
+    --dk-surface-deep: var(--dk-bg-brown);
+
+    background-color: var(--dk-bg-base);
+    color: #f7ebdd;
+}
+
+/* 2. Header — seamless transition into page content */
+
+body.daken-frontend :is(
+    .site-header,
+    .daken-nav52-header
+) {
+    background: linear-gradient(
+        180deg,
+        var(--dk-surface-edge) 0%,
+        #100b09 55%,
+        var(--dk-surface-warm) 100%
+    ) !important;
+
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+/* 3. One continuous background for public page content */
+
+body.daken-frontend #main-content {
+    min-height: 65vh;
+
+    background:
+        radial-gradient(
+            ellipse 80% 34% at 50% 38%,
+            rgba(93, 49, 29, 0.38) 0%,
+            transparent 100%
+        ),
+        linear-gradient(
+            180deg,
+            var(--dk-surface-warm) 0%,
+            var(--dk-surface-deep) 45%,
+            var(--dk-surface-warm) 72%,
+            var(--dk-surface-edge) 100%
+        );
+}
+
+/* 4. Public page wrappers inherit the main background */
+
+body.daken-frontend :is(
+    .products-page,
+    .locations-page,
+    .contact-page,
+    .about-page,
+    .site-content-page,
+    .dg-gallery,
+    .daken-public-page
+) {
+    background: transparent;
+}
+
+/* 5. Public sections do not create separate color panels */
+
+body.daken-frontend :is(
+    .daken-section,
+    .daken-section--cream,
+    .daken-gallery-home,
+    .daken-contact-cta,
+    .about-hero,
+    .about-values,
+    .site-content-hero,
+    .site-content-related
+) {
+    background: transparent;
+}
+
+/* 6. Remove section separators, not card borders */
+
+body.daken-frontend #main-content > section,
+body.daken-frontend #main-content .site-content-related {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+    box-shadow: none;
+}
+
+/* 7. Preserve readable text on dark page backgrounds */
+
+body.daken-frontend :is(
+    .about-page,
+    .site-content-page,
+    .contact-page
+) {
+    color: #f7ebdd;
+}
+
+/* 8. Footer — seamless transition from content */
+
+body.daken-frontend :is(
+    .site-footer,
+    .daken-nav52-footer
+) {
+    background: linear-gradient(
+        180deg,
+        var(--dk-surface-edge) 0%,
+        #090807 65%,
+        #090807 100%
+    ) !important;
+
+    border-top: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Footer-bottom separator is intentionally preserved.
+   Product cards, forms, navigation and decorative
+   image frames retain their existing styling. */

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\StaffResetPasswordNotification;
+use App\Support\AdminLoginPolicy;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -9,14 +11,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+
+
+
+
+
 
 #[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+#[Hidden([
+    'password',
+    'remember_token',
+    'two_factor_secret',
+    'two_factor_recovery_codes',
+])]class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
-
+    use HasFactory, Notifiable, TwoFactorAuthenticatable;
     public const PERMISSIONS = [
         'products.manage' => 'إدارة المنتجات',
         'categories.manage' => 'إدارة التصنيفات',
@@ -31,8 +42,8 @@ class User extends Authenticatable
         'navigation.manage' => 'إدارة القائمة',
         'email-notifications.manage' => 'إدارة إشعارات البريد',
         'system-health.view' => 'عرض حالة النظام',
-        'users.manage' => 'إدارة المستخدمين',
-    ];
+        'users.manage' => 'إدارة الموظفين',
+        ];
 
     protected function casts(): array
     {
@@ -43,6 +54,7 @@ class User extends Authenticatable
             'admin_level' => 'integer',
             'admin_permissions' => 'array',
             'is_active' => 'boolean',
+            'two_factor_confirmed_at' => 'datetime',
         ];
     }
 
@@ -124,4 +136,16 @@ class User extends Authenticatable
 
         return true;
     }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        if (! AdminLoginPolicy::allows($this)) {
+            return;
+        }
+
+        $this->notify(
+            new StaffResetPasswordNotification($token)
+        );
+    }
+
 }

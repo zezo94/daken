@@ -26,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
             'admin.permission' => \App\Http\Middleware\EnsureAdminPermission::class,
+            'staff.auth' => \App\Http\Middleware\EnsureActiveStaffAuthentication::class,
         ]);
 
         $middleware->append(
@@ -35,10 +36,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'web',
             \App\Http\Middleware\TrackSiteVisit::class
         );
-        $middleware->appendToGroup(
-            'web',
-            \App\Http\Middleware\RejectInactiveAdminTwoFactor::class
-        );
+
 
 
 

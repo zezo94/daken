@@ -18,7 +18,7 @@
 
 @section('content')
 
-    <main class="site-content-page">
+    <div class="site-content-page">
 
         {{-- Page Header --}}
         <section class="site-content-hero">
@@ -132,6 +132,6 @@
 
         @endif
 
-    </main>
+    </div>
 
 @endsection

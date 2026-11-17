@@ -21,7 +21,6 @@ body:not(.daken-admin-body) .products-filters__field label,body:not(.daken-admin
 body:not(.daken-admin-body) .products-filters__field input,body:not(.daken-admin-body) .products-filters__field select {background:#0e0b0a;color:var(--dk-ivory);border-color:#765333;}
 body:not(.daken-admin-body) .products-filters__submit,body:not(.daken-admin-body) .products-empty a {background:var(--dk-gold);border-color:var(--dk-gold);color:#110b08;}
 body:not(.daken-admin-body) .products-filters__reset {background:transparent;border-color:#765333;color:var(--dk-ivory);}
-body:not(.daken-admin-body) .product-card {background:linear-gradient(145deg,#251711,#100d0b);border-color:#513724;box-shadow:0 15px 36px #0003;}
 body:not(.daken-admin-body) .product-card__image,body:not(.daken-admin-body) .daken-product-gallery__main,body:not(.daken-admin-body) .daken-product-gallery__thumb {background:#251914;}
 body:not(.daken-admin-body) .product-card__body h3 {color:var(--dk-ivory);}
 body:not(.daken-admin-body) .product-card__body p,body:not(.daken-admin-body) .products-empty p {color:var(--dk-muted);}

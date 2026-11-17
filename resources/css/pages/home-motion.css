@@ -1,0 +1,38 @@
+/* DAKEN: homepage only. No changes to admin or other pages. */
+@media (prefers-reduced-motion: no-preference) {
+    /* CSS-only entrance: works without JavaScript. */
+    .daken-frontend .daken-hero__content > .daken-eyebrow { animation: daken-enter .85s .08s both; }
+    .daken-frontend .daken-hero__content > h1 { animation: daken-enter 1s .22s both; }
+    .daken-frontend .daken-hero__content > p { animation: daken-enter 1s .38s both; }
+    .daken-frontend .daken-hero__content > .daken-button { animation: daken-enter 1s .52s both; }
+    @keyframes daken-enter {
+        from { opacity: 0; transform: translate3d(0, 20px, 0); }
+        to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+    /* Only JS-enhanced elements are hidden. The JS marks them after attaching observer. */
+    .daken-frontend .daken-motion-pending {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+        transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .daken-frontend .daken-motion-pending.daken-motion-visible {
+        opacity: 1;
+        transform: none;
+    }
+    @media (hover: hover) and (pointer: fine) {
+        .daken-frontend .daken-category-card,
+        .daken-frontend .daken-location-card,
+        .daken-frontend .daken-gallery-home__item {
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+        .daken-frontend .daken-category-card:hover,
+        .daken-frontend .daken-location-card:hover,
+        .daken-frontend .daken-gallery-home__item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(0,0,0,.18);
+        }
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .daken-frontend .daken-motion-pending { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

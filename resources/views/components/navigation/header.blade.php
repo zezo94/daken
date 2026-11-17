@@ -319,35 +319,25 @@
         {{-- Controls --}}
         <div class="daken-nav53__controls">
 
-            {{-- Language --}}
-            <form
-                action="{{ route('language.switch') }}"
-                method="POST"
-                class="language-switcher"
-            >
-                @csrf
-
-                <label
-                    class="daken-nav53__sr-only"
-                    for="site-language"
-                >
-                    {{ $ar ? 'اختر اللغة' : 'Select language' }}
-                </label>
-
-                <select
-                    id="site-language"
-                    name="locale"
-                    onchange="this.form.submit()"
-                >
-                    <option value="ar" @selected($ar)>
-                        العربية
-                    </option>
-
-                    <option value="en" @selected(!$ar)>
-                        English
-                    </option>
-                </select>
-            </form>
+            {{-- Localized language controls: preserve existing POST route and CSRF protection. --}}
+            <div class="daken-language-options" role="group" aria-label="{{ $ar ? 'تغيير اللغة' : 'Change language' }}">
+                <form action="{{ route('language.switch') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="locale" value="ar">
+                    <button type="submit" class="daken-language-options__button" aria-pressed="{{ $ar ? 'true' : 'false' }}" lang="ar" title="العربية">
+                        <span class="daken-language-options__flag" aria-hidden="true">🇯🇴</span>
+                        <span>العربية</span>
+                    </button>
+                </form>
+                <form action="{{ route('language.switch') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="locale" value="en">
+                    <button type="submit" class="daken-language-options__button" aria-pressed="{{ $ar ? 'false' : 'true' }}" lang="en" title="English">
+                        <span class="daken-language-options__flag" aria-hidden="true">🇬🇧</span>
+                        <span>English</span>
+                    </button>
+                </form>
+            </div>
 
             {{-- Account controls --}}
             <div class="daken-nav53__account">
@@ -380,11 +370,7 @@
 
                         </div>
                     </details>
-                @else
-                    <a href="{{ route('login') }}"
-                       class="daken-account-login">
-                        {{ $ar ? 'تسجيل الدخول' : 'Login' }}
-                    </a>
+
                 @endauth
 
             </div>
@@ -423,27 +409,24 @@
                         </a>
                     @endforeach
 
-                        {{-- Mobile account links --}}
-                        @auth
-                            <a href="{{ route('profile.show') }}"
-                               @if(request()->routeIs('profile.show'))
-                                   aria-current="page"
-                                @endif>
-                                {{ $ar ? 'الملف الشخصي' : 'My Profile' }}
-                            </a>
+                    {{-- Mobile account links --}}
+                    @auth
+                        <a href="{{ route('profile.show') }}"
+                           @if(request()->routeIs('profile.show'))
+                               aria-current="page"
+                            @endif>
+                            {{ $ar ? 'الملف الشخصي' : 'My Profile' }}
+                        </a>
 
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                                <button type="submit" class="daken-account-logout">
-                                    {{ $ar ? 'تسجيل الخروج' : 'Logout' }}
-                                </button>
-                            </form>
-                        @else
-                            <a href="{{ route('login') }}">
-                                {{ $ar ? 'تسجيل الدخول' : 'Login' }}
-                            </a>
-                        @endauth
+                            <button type="submit" class="daken-account-logout">
+                                {{ $ar ? 'تسجيل الخروج' : 'Logout' }}
+                            </button>
+                        </form>
+
+                    @endauth
 
                 </nav>
             </details>

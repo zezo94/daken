@@ -12,18 +12,23 @@
 
     @php
         $isArabic = app()->getLocale() === 'ar';
+
+        $hasActiveFilters = $search !== ''
+            || $city !== '';
     @endphp
 
     <section class="container locations-page">
 
         <header class="locations-page__header">
 
-        <span class="locations-page__eyebrow">
-            DAKEN Chocolate
-        </span>
+            <span class="locations-page__eyebrow">
+                DAKEN Chocolate
+            </span>
 
             <h1>
-                {{ $isArabic ? 'أماكن البيع' : 'Where to Find Us' }}
+                {{ $isArabic
+                    ? 'أماكن البيع'
+                    : 'Where to Find Us' }}
             </h1>
 
             <p>
@@ -34,78 +39,163 @@
 
         </header>
 
-        <form
-            action="{{ route('locations.index') }}"
-            method="GET"
-            class="locations-filters"
-            role="search"
-        >
+        {{-- Collapsible filters and page-size selector --}}
+        <div class="daken-listing-toolbar">
 
-            <div class="locations-filters__field">
+            <details
+                class="daken-filter-panel"
+                @if($hasActiveFilters) open @endif
+            >
+                <summary class="daken-filter-toggle">
+                    <span class="daken-filter-toggle__label">
+                        <span aria-hidden="true">☷</span>
 
-                <label for="location-search">
-                    {{ $isArabic ? 'البحث' : 'Search' }}
-                </label>
+                        {{ $isArabic
+                            ? 'البحث والتصفية'
+                            : 'Search & Filters' }}
 
-                <input
-                    id="location-search"
-                    type="search"
-                    name="search"
-                    value="{{ $search }}"
-                    maxlength="100"
-                    placeholder="{{ $isArabic ? 'اسم المكان أو المدينة...' : 'Location name or city...' }}"
+                        @if($hasActiveFilters)
+                            <span class="daken-filter-active">
+                                {{ $isArabic ? 'نشط' : 'Active' }}
+                            </span>
+                        @endif
+                    </span>
+
+                    <span
+                        class="daken-filter-toggle__arrow"
+                        aria-hidden="true"
+                    >⌄</span>
+                </summary>
+
+                <form
+                    action="{{ route('locations.index') }}"
+                    method="GET"
+                    class="locations-filters"
+                    role="search"
                 >
+                    <input
+                        type="hidden"
+                        name="per_page"
+                        value="{{ $perPage }}"
+                    >
 
-            </div>
+                    <div class="locations-filters__field">
+                        <label for="location-search">
+                            {{ $isArabic ? 'البحث' : 'Search' }}
+                        </label>
 
-            <div class="locations-filters__field">
+                        <input
+                            id="location-search"
+                            type="search"
+                            name="search"
+                            value="{{ $search }}"
+                            maxlength="100"
+                            placeholder="{{ $isArabic
+                                ? 'اسم المكان أو المدينة...'
+                                : 'Location name or city...' }}"
+                        >
+                    </div>
 
-                <label for="location-city">
-                    {{ $isArabic ? 'المدينة' : 'City' }}
+                    <div class="locations-filters__field">
+                        <label for="location-city">
+                            {{ $isArabic ? 'المدينة' : 'City' }}
+                        </label>
+
+                        <select
+                            id="location-city"
+                            name="city"
+                        >
+                            <option value="">
+                                {{ $isArabic
+                                    ? 'جميع المدن'
+                                    : 'All cities' }}
+                            </option>
+
+                            @foreach($cities as $cityName)
+                                <option
+                                    value="{{ $cityName }}"
+                                    @selected($city === $cityName)
+                                >
+                                    {{ $cityName }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="locations-filters__actions">
+
+                        <button type="submit">
+                            {{ $isArabic ? 'بحث' : 'Search' }}
+                        </button>
+
+                        <a href="{{ route('locations.index', ['per_page' => $perPage]) }}">
+                            {{ $isArabic ? 'إعادة ضبط' : 'Reset' }}
+                        </a>
+
+                    </div>
+                </form>
+            </details>
+
+            {{-- Independent page-size form --}}
+            <form
+                method="GET"
+                action="{{ route('locations.index') }}"
+                class="daken-page-size-form"
+            >
+                @if($search !== '')
+                    <input
+                        type="hidden"
+                        name="search"
+                        value="{{ $search }}"
+                    >
+                @endif
+
+                @if($city !== '')
+                    <input
+                        type="hidden"
+                        name="city"
+                        value="{{ $city }}"
+                    >
+                @endif
+
+                <label for="locations-per-page">
+                    {{ $isArabic
+                        ? 'عرض لكل صفحة'
+                        : 'Items per page' }}
                 </label>
 
                 <select
-                    id="location-city"
-                    name="city"
+                    id="locations-per-page"
+                    name="per_page"
+                    onchange="this.form.requestSubmit()"
                 >
-
-                    <option value="">
-                        {{ $isArabic ? 'جميع المدن' : 'All cities' }}
-                    </option>
-
-                    @foreach($cities as $cityName)
+                    @foreach([6, 12, 24, 48] as $count)
                         <option
-                            value="{{ $cityName }}"
-                            @selected($city === $cityName)
+                            value="{{ $count }}"
+                            @selected($perPage === $count)
                         >
-                            {{ $cityName }}
+                            {{ $count }}
                         </option>
                     @endforeach
-
                 </select>
 
-            </div>
+                <noscript>
+                    <button type="submit">
+                        {{ $isArabic ? 'تطبيق' : 'Apply' }}
+                    </button>
+                </noscript>
+            </form>
 
-            <div class="locations-filters__actions">
+        </div>
 
-                <button type="submit">
-                    {{ $isArabic ? 'بحث' : 'Search' }}
-                </button>
-
-                <a href="{{ route('locations.index') }}">
-                    {{ $isArabic ? 'إعادة ضبط' : 'Reset' }}
-                </a>
-
-            </div>
-
-        </form>
-
+        {{-- Results summary --}}
         <div class="locations-page__results">
             {{ $isArabic ? 'عدد الأماكن:' : 'Locations:' }}
 
             <strong>{{ $locations->total() }}</strong>
         </div>
 
+        {{-- Location cards --}}
         @if($locations->isNotEmpty())
 
             <div class="locations-grid">
@@ -115,21 +205,18 @@
                     <article class="location-card">
 
                         <div class="location-card__image">
-
                             <img
                                 src="{{ $location->image_url }}"
                                 alt="{{ $location->translated_name }}"
                                 loading="lazy"
-                                onerror="this.onerror=null;this.src='{{ asset('images/location-placeholder.svg') }}';"
                             >
-
                         </div>
 
                         <div class="location-card__content">
 
-                        <span class="location-card__city">
-                            {{ $location->city }}
-                        </span>
+                            <span class="location-card__city">
+                                {{ $location->city }}
+                            </span>
 
                             <h2>
                                 {{ $location->translated_name }}
@@ -157,7 +244,10 @@
                             rel="noopener noreferrer"
                             class="location-card__map-link"
                         >
-                            {{ $isArabic ? 'عرض على الخريطة' : 'View on Map' }}
+                            {{ $isArabic
+                                ? 'عرض على الخريطة'
+                                : 'View on Map' }}
+
                             <span aria-hidden="true">↗</span>
                         </a>
 
@@ -188,7 +278,9 @@
                 </p>
 
                 <a href="{{ route('locations.index') }}">
-                    {{ $isArabic ? 'عرض جميع الأماكن' : 'View all locations' }}
+                    {{ $isArabic
+                        ? 'عرض جميع الأماكن'
+                        : 'View all locations' }}
                 </a>
 
             </div>

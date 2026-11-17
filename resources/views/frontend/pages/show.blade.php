@@ -4,7 +4,7 @@
 
 @section('content')
 @php($ar = app()->getLocale() === 'ar')
-<main class="daken-public-page" dir="{{ $ar ? 'rtl' : 'ltr' }}">
+<div class="daken-public-page" dir="{{ $ar ? 'rtl' : 'ltr' }}">
     <div class="daken-public-page__glow" aria-hidden="true"></div>
     <div class="daken-public-page__inner">
         <header class="daken-public-page__heading">
@@ -27,5 +27,5 @@
             </article>
         </div>
     </div>
-</main>
+</div>
 @endsection

@@ -36,12 +36,14 @@ class StoreLocationRequest extends FormRequest
                 'nullable',
                 'numeric',
                 'between:-90,90',
+                'decimal:0,7',
             ],
 
             'longitude' => [
                 'nullable',
                 'numeric',
                 'between:-180,180',
+                'decimal:0,7',
             ],
 
             // صورة أو شعار المكان
@@ -56,7 +58,7 @@ class StoreLocationRequest extends FormRequest
             'google_maps_url' => [
                 'nullable',
                 'url:http,https',
-                'max:2048',
+                'max:255',
                 function ($attribute, $value, $fail) {
                     if (!$value) {
                         return;
@@ -85,6 +87,7 @@ class StoreLocationRequest extends FormRequest
                 'required',
                 'integer',
                 'min:0',
+                'max:4294967295',
             ],
         ];
     }

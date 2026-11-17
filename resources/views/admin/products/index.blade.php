@@ -590,6 +590,10 @@
                 }
 
                 form.addEventListener('submit', event => {
+
+                    if (form.dataset.bulkApproved === 'true') {
+                        return;
+                    }
                     // Disable the inline handler if it exists.
                     // Confirmation is handled here.
                     event.preventDefault();
@@ -631,7 +635,13 @@
                     }
 
                     if (confirm(message)) {
-                        form.submit();
+                        form.dataset.bulkApproved = 'true';
+
+                        try {
+                            form.requestSubmit();
+                        } finally {
+                            delete form.dataset.bulkApproved;
+                        }
                     }
                 });
 

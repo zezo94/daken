@@ -18,8 +18,10 @@ class ProfilePageAndLogoutTest extends TestCase
 
     public function test_authenticated_user_can_view_profile(): void
     {
-        $user = User::factory()->create();
-
+        $user = User::factory()->create([
+            'role' => 'admin',
+            'is_active' => true,
+        ]);
         $this->actingAs($user)
             ->get(route('profile.show'))
             ->assertOk()

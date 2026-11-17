@@ -17,6 +17,11 @@ class ProfileInformationSecurityTest extends TestCase
             'name' => 'Original Name',
             'email' => 'original@example.com',
             'password' => Hash::make('CurrentPassword123!'),
+            'role' => 'admin',
+            'is_active' => true,
+            'is_super_admin' => false,
+            'admin_level' => 20,
+            'admin_permissions' => [],
         ]);
 
         $this->actingAs($user)
@@ -36,8 +41,8 @@ class ProfileInformationSecurityTest extends TestCase
 
         $this->assertSame('new@example.com', $user->email);
         $this->assertSame('Original Name', $user->name);
-        $this->assertNotSame('admin', $user->role);
-        $this->assertFalse((bool) $user->is_super_admin);
+        $this->assertSame('admin', $user->role);
+        $this->assertTrue((bool) $user->is_active);        $this->assertFalse((bool) $user->is_super_admin);
         $this->assertNotSame(100, (int) $user->admin_level);
         $this->assertNotContains(
             'users.manage',
@@ -50,6 +55,11 @@ class ProfileInformationSecurityTest extends TestCase
         $user = User::factory()->create([
             'email' => 'original@example.com',
             'password' => Hash::make('CurrentPassword123!'),
+            'role' => 'admin',
+            'is_active' => true,
+            'is_super_admin' => false,
+            'admin_level' => 20,
+            'admin_permissions' => [],
         ]);
 
         $this->actingAs($user)
